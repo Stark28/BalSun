@@ -44,6 +44,13 @@ public class Main {
 			Document doc1 = dBuilder.parse(XmlFileEQ);
 			Document doc2 = dBuilder.parse(XmlFileSSH);
 			
+			//Extract required data from EQ file
+			NodeList basevoltList = doc1.getElementsByTagName("cim:BaseVoltage");
+			NodeList subList = doc1.getElementsByTagName("cim:Substation");
+			NodeList voltlvList = doc1.getElementsByTagName("cim:VoltageLevel");
+			NodeList genList = doc1.getElementsByTagName("cim:GeneratingUnit");
+			NodeList smList = doc1.getElementsByTagName("cim:SynchronousMachine");
+			
 			
 		}
 	}
