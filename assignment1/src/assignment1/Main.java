@@ -32,9 +32,19 @@ public class Main {
     	
 	public void parsingXml(String EQ, String SSH) {
 		try {
+			
 			//import the EQ and SSH files that we are going to use
 			File XmlFileEQ = new File("Assignment_EQ_reduced.xml");
-			File XmlFileEQ = new File("Assignment_EQ_reduced.xml");
+			File XmlFileSSH = new File("Assignment_SSH_reduced.xml");
+			
+			//Create Document Object and parse them
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			
+			Document doc1 = dBuilder.parse(XmlFileEQ);
+			Document doc2 = dBuilder.parse(XmlFileSSH);
+			
+			
 		}
 	}
     }
