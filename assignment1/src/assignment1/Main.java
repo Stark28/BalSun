@@ -57,14 +57,96 @@ public class Main {
 			NodeList breakList = doc1.getElementsByTagName("cim:Breaker");
 			NodeList tapList = doc1.getElementsByTagName("cim:RatioTapChanger");
 			
-			// Base Voltage List
+			// Extract required data from the SSH file
+			NodeList smList2 = doc2.getElementsByTagName("cim:SynchronousMachine");
+			NodeList rcList2 = doc2.getElementsByTagName("cim:RegulatingControl");
+			NodeList energyconsList2 = doc2.getElementsByTagName("cim:EnergyConsumer");
+			NodeList breakList2 = doc2.getElementsByTagName("cim:Breaker");
+			NodeList tapList2 = doc2.getElementsByTagName("cim:RatioTapChanger");
+			
+			// Base Voltage List done
 			for (int i = 0; i<basevoltList.getLength(); i++) {
-				BaseVoltClass baseV = new BaseVoltClass();
-				baseV.extractNode(basevoltList.item(i));
-				BaseVoltageList.add(baseV);
+				BaseVoltClass basevolt = new BaseVoltClass();
+				basevolt.extractNode(basevoltList.item(i));
+				BaseVoltList.add(basevolt);
 				}
 			
+			// Substation List done
+			for (int i = 0; i<subList.getLength(); i++) {
+				SubClass sub = new SubClass();
+				sub.extractNode(subList.item(i));
+				SubList.add(sub);
+				}
+			
+			//Voltage Level List done
+			for (int i = 0; i<voltlvList.getLength(); i++) {
+				VoltLvClass voltLv = new VoltLvClass();
+				voltLv.extractNode(voltlvList.item(i));
+				VoltLvList.add(voltLv);
+				}
+			
+			//Generating Unit List done
+			for (int i = 0; i<genList.getLength(); i++) {
+				GenClass gen = new GenClass();
+				gen.extractNode(genList.item(i));
+				GenList.add(gen);
+				}
+			
+			//Synchronous Machine List
+			for (int i = 0; i<smList.getLength(); i++) {
+				SMClass sm = new SMClass();
+				sm.extractNode(smList.item(i));
+				sm.extractNodeSSH(syncListSSH.item(i));
+				SMList.add(sm);
+				}
+			
+			//Regulating Control List
+			for (int i = 0; i<regList.getLength(); i++) {
+				RegControlClass regCtrl = new RegControlClass();
+				regCtrl.extractNode(regList.item(i));
+				regCtrl.extractNodeSSH(regListSSH.item(i));
+				RegCtrList.add(regCtrl);	
+				}
+			
+			//Power Transformer List
+			for (int i = 0; i<powTrList.getLength(); i++) {
+				PowerTransClass PowTrans = new PowerTransClass();
+				PowTrans.extractNode(powTrList.item(i));
+				PowerTrList.add(PowTrans);
+				}
+			
+			//Energy Consumer List
+			for (int i = 0; i<energyConList.getLength(); i++) {
+				LoadClass load = new LoadClass();
+				load.extractNode(energyConList.item(i));
+				load.extractNodeSSH(energyConListSSH.item(i));
+				LoadList.add(load);
+				}
+			
+		    //Power Transformer End (Winding) List
+			for (int i = 0; i<powTrEndList.getLength(); i++) {
+				PowTrEndClass transEnd = new PowTrEndClass();
+				transEnd.extractNode(powTrEndList.item(i));
+				TransWindList.add(transEnd);
+				}
+			
+			//Breaker List
+			for (int i = 0; i<breakList.getLength(); i++) {
+				BreakerClass breaker = new BreakerClass();
+				breaker.extractNode(breakList.item(i));
+				breaker.extractNodeSSH(breakListSSH.item(i));
+				BreakerList.add(breaker);
+				}
+			
+			//Ratio Tap Changer List
+			for (int i = 0; i<tapList.getLength(); i++) {
+				TapChangerClass tapChng = new TapChangerClass();
+				tapChng.extractNode(tapList.item(i));
+				tapChng.extractNodeSSH(tapListSSH.item(i));
+				TapChangerList.add(tapChng);
+			}
+			
 		}
-	}
+	  }
     }
-}
+
