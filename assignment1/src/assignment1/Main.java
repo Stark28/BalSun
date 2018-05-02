@@ -14,21 +14,22 @@ import org.w3c.dom.NodeList;
 public class Main {
 	//Creating array list for each CIM object according to individual classes defined per object
 	private List <BaseVoltClass> BaseVoltList = new ArrayList<BaseVoltClass>();
-	private List <SubstationClass> SubList = new ArrayList<SubstationClass>();
-	private List <VoltLevelClass> VoltLvList = new ArrayList<VoltLevelClass>();
-	private List <GenUnitClass> GenList = new ArrayList<GenUnitClass>();
-	private List <SynchMachineClass> SMList = new ArrayList<SynchMachineClass>();
-	private List <RegControlClass> RCList = new ArrayList<RegControlClass>();
+	private List <SubClass> SubList = new ArrayList<SubClass>();
+	private List <VoltLvClass> VoltLvList = new ArrayList<VoltLvClass>();
+	private List <GenClass> GenList = new ArrayList<GenClass>();
+	private List <SMClass> SMList = new ArrayList<SMClass>();
+	private List <RCClass> RCList = new ArrayList<RCClass>();
 	private List <PowerTransClass> PowerTransList = new ArrayList<PowerTransClass>();
-	private List <EnergyConsClass> EnergyConsList = new ArrayList<LoadClass>();
-	private List <PowTrEndClass> TransWindList = new ArrayList<PowTrEndClass>();
+	private List <EnergyConsClass> EnergyConsList = new ArrayList<EnergyConsClass>();
+	private List <TransWindingClass> TransWindingList = new ArrayList<TransWindingClass>();
 	private List <BreakerClass> BreakerList = new ArrayList<BreakerClass>();
-	private List <TapChangerClass> TapChangerList = new ArrayList<TapChangerClass>();
-	private List <TerminalClass> TerminalList = new ArrayList<TerminalClass>();
-	private List <ConnectivityNodeClass> ConnectNodeList = new ArrayList<ConnectivityNodeClass>();
-	private List <ACLineClass> ACLineList = new ArrayList<ACLineClass>();
-	private List <BusBarClass> BusBarList = new ArrayList<BusBarClass>();
-	private List <ShuntClass> ShuntList = new ArrayList<ShuntClass>();
+	private List <TapClass> TapList = new ArrayList<TapClass>();
+	//private List <TerminalClass> TerminalList = new ArrayList<TerminalClass>();
+	//private List <ConnectivityNodeClass> ConnectNodeList = new ArrayList<ConnectivityNodeClass>();
+	//private List <ACLineClass> ACLineList = new ArrayList<ACLineClass>();
+	//private List <BusBarClass> BusBarList = new ArrayList<BusBarClass>();
+	//private List <ShuntClass> ShuntList = new ArrayList<ShuntClass>();
     	
+	
     }
 }
