@@ -50,7 +50,19 @@ public class Main {
 			NodeList voltlvList = doc1.getElementsByTagName("cim:VoltageLevel");
 			NodeList genList = doc1.getElementsByTagName("cim:GeneratingUnit");
 			NodeList smList = doc1.getElementsByTagName("cim:SynchronousMachine");
+			NodeList rcList = doc1.getElementsByTagName("cim:RegulatingControl");
+			NodeList powertransList = doc1.getElementsByTagName("cim:PowerTransformer");
+			NodeList energyconsList = doc1.getElementsByTagName("cim:EnergyConsumer");
+			NodeList transwinding = doc1.getElementsByTagName("cim:PowerTransformerEnd");
+			NodeList breakList = doc1.getElementsByTagName("cim:Breaker");
+			NodeList tapList = doc1.getElementsByTagName("cim:RatioTapChanger");
 			
+			// Base Voltage List
+			for (int i = 0; i<basevoltList.getLength(); i++) {
+				BaseVoltClass baseV = new BaseVoltClass();
+				baseV.extractNode(basevoltList.item(i));
+				BaseVoltageList.add(baseV);
+				}
 			
 		}
 	}
