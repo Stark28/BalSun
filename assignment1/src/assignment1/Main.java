@@ -30,6 +30,12 @@ public class Main {
 	//private List <BusBarClass> BusBarList = new ArrayList<BusBarClass>();
 	//private List <ShuntClass> ShuntList = new ArrayList<ShuntClass>();
     	
-	
+	public void parsingXml(String EQ, String SSH) {
+		try {
+			//import the EQ and SSH files that we are going to use
+			File XmlFileEQ = new File("Assignment_EQ_reduced.xml");
+			File XmlFileEQ = new File("Assignment_EQ_reduced.xml");
+		}
+	}
     }
 }
