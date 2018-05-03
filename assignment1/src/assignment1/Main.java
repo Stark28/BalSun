@@ -53,7 +53,7 @@ public class Main {
 			NodeList rcList = doc1.getElementsByTagName("cim:RegulatingControl");
 			NodeList powertransList = doc1.getElementsByTagName("cim:PowerTransformer");
 			NodeList energyconsList = doc1.getElementsByTagName("cim:EnergyConsumer");
-			NodeList transwinding = doc1.getElementsByTagName("cim:PowerTransformerEnd");
+			NodeList transwindingList = doc1.getElementsByTagName("cim:PowerTransformerEnd");
 			NodeList breakList = doc1.getElementsByTagName("cim:Breaker");
 			NodeList tapList = doc1.getElementsByTagName("cim:RatioTapChanger");
 			
@@ -92,42 +92,43 @@ public class Main {
 				GenList.add(gen);
 				}
 			
-			//Synchronous Machine List
+			//Synchronous Machine List done
 			for (int i = 0; i<smList.getLength(); i++) {
 				SMClass sm = new SMClass();
 				sm.extractNode(smList.item(i));
-				sm.extractNodeSSH(syncListSSH.item(i));
+				sm.extractNodeSSH(smList2.item(i));
+				// extractnodeSSH ??? what does this mean, can I change the method name here?
 				SMList.add(sm);
 				}
 			
-			//Regulating Control List
-			for (int i = 0; i<regList.getLength(); i++) {
-				RegControlClass regCtrl = new RegControlClass();
-				regCtrl.extractNode(regList.item(i));
-				regCtrl.extractNodeSSH(regListSSH.item(i));
-				RegCtrList.add(regCtrl);	
+			//Regulating Control List done
+			for (int i = 0; i<rcList.getLength(); i++) {
+				RCClass rc = new RCClass();
+				rc.extractNode(rcList.item(i));
+				rc.extractNodeSSH(rcList2.item(i));
+				RCList.add(rc);	
 				}
 			
-			//Power Transformer List
-			for (int i = 0; i<powTrList.getLength(); i++) {
-				PowerTransClass PowTrans = new PowerTransClass();
-				PowTrans.extractNode(powTrList.item(i));
-				PowerTrList.add(PowTrans);
+			//Power Transformer List done
+			for (int i = 0; i<powertransList.getLength(); i++) {
+				PowerTransClass powertrans = new PowerTransClass();
+				powertrans.extractNode(powertransList.item(i));
+				PowerTransList.add(powertrans);
 				}
 			
-			//Energy Consumer List
-			for (int i = 0; i<energyConList.getLength(); i++) {
-				LoadClass load = new LoadClass();
-				load.extractNode(energyConList.item(i));
-				load.extractNodeSSH(energyConListSSH.item(i));
-				LoadList.add(load);
+			//Energy Consumer List done
+			for (int i = 0; i<energyconsList.getLength(); i++) {
+				EnergyConsClass energycons = new EnergyConsClass();
+				energycons.extractNode(energyconsList.item(i));
+				energycons.extractNodeSSH(energyconsList2.item(i));
+				EnergyConsList.add(energycons);
 				}
 			
-		    //Power Transformer End (Winding) List
-			for (int i = 0; i<powTrEndList.getLength(); i++) {
-				PowTrEndClass transEnd = new PowTrEndClass();
-				transEnd.extractNode(powTrEndList.item(i));
-				TransWindList.add(transEnd);
+		    //Power Transformer End (Winding) List done
+			for (int i = 0; i<transwindingList.getLength(); i++) {
+				TransWindingClass transwinding = new TransWindingClass();
+				transwinding.extractNode(transwindingList.item(i));
+				TransWindingList.add(transwinding);
 				}
 			
 			//Breaker List
