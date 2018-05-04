@@ -131,23 +131,69 @@ public class Main {
 				TransWindingList.add(transwinding);
 				}
 			
-			//Breaker List
+			//Breaker List done
 			for (int i = 0; i<breakList.getLength(); i++) {
 				BreakerClass breaker = new BreakerClass();
 				breaker.extractNode(breakList.item(i));
-				breaker.extractNodeSSH(breakListSSH.item(i));
+				breaker.extractNodeSSH(breakList2.item(i));
 				BreakerList.add(breaker);
 				}
 			
-			//Ratio Tap Changer List
+			//Ratio Tap Changer List done
 			for (int i = 0; i<tapList.getLength(); i++) {
-				TapChangerClass tapChng = new TapChangerClass();
-				tapChng.extractNode(tapList.item(i));
-				tapChng.extractNodeSSH(tapListSSH.item(i));
-				TapChangerList.add(tapChng);
+				TapClass tap = new TapClass();
+				tap.extractNode(tapList.item(i));
+				tap.extractNodeSSH(tapList2.item(i));
+				TapList.add(tap);
 			}
-			
 		}
+		catch(Exception e){
+			e.printStackTrace();
+			}
 	  }
+	         //Returning the list of array for each CIM objects
+	         public List <BaseVoltClass> getBaseVoltList(){
+	         return BaseVoltList;
+	       }
+	         
+	         public List <SubClass> getSubList(){
+	         return SubList;
+	         }
+	         
+	         public List <VoltLvClass> getVoltLvList(){
+	         return VoltLvList;
+	         }
+	         
+	         public List <GenClass> getGenList(){
+		     return GenList;
+		     }
+	         
+	         public List <SMClass> getSMList(){
+		     return SMList;
+		     }
+	         
+	         public List <RCClass> getRCList(){
+		     return RCList;
+		     }
+	         
+	         public List <PowerTransClass> getPowerTransList(){
+		     return PowerTransList;
+		     }
+	         
+	         public List <EnergyConsClass> getEnergyConsList(){
+		     return EnergyConsList;
+		     }
+	         
+	         public List <TransWindingClass> getTransWindingList(){
+		     return TransWindingList;
+		     }
+	         
+	         public List <BreakerClass> getBreakerList(){
+		     return BreakerList;
+		     }
+	         
+	         public List <TapClass> getTapList(){
+		     return TapList;
+		     }
     }
 
