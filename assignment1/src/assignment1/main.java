@@ -11,7 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 // Main class for extracting all the requirement data for importing into SQL database
-public class Main {
+public class main {
 	//Creating array list for each CIM object according to individual classes defined per object
 	private List <BaseVoltClass> BaseVoltList = new ArrayList<BaseVoltClass>();
 	private List <SubClass> SubList = new ArrayList<SubClass>();
@@ -195,5 +195,7 @@ public class Main {
 	         public List <TapClass> getTapList(){
 		     return TapList;
 		     }
+	         
+	         
     }
 
