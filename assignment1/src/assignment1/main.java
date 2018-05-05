@@ -15,17 +15,17 @@ import org.w3c.dom.NodeList;
 // Main class for extracting all the requirement data for importing into SQL database
 public class main {
 	//Creating array list for each CIM object according to individual classes defined per object
-	private List <BaseVoltClass> BaseVoltList = new ArrayList<BaseVoltClass>();
-	private List <SubClass> SubList = new ArrayList<SubClass>();
-	private List <VoltLvClass> VoltLvList = new ArrayList<VoltLvClass>();
-	private List <GenClass> GenList = new ArrayList<GenClass>();
-	private List <SMClass> SMList = new ArrayList<SMClass>();
-	private List <RCClass> RCList = new ArrayList<RCClass>();
-	private List <PowerTransClass> PowerTransList = new ArrayList<PowerTransClass>();
-	private List <EnergyConsClass> EnergyConsList = new ArrayList<EnergyConsClass>();
-	private List <TransWindingClass> TransWindingList = new ArrayList<TransWindingClass>();
-	private List <BreakerClass> BreakerList = new ArrayList<BreakerClass>();
-	private List <TapClass> TapList = new ArrayList<TapClass>();
+	//private List <BaseVoltClass> BaseVoltList = new ArrayList<BaseVoltClass>();
+	//private List <SubClass> SubList = new ArrayList<SubClass>();
+	//private List <VoltLvClass> VoltLvList = new ArrayList<VoltLvClass>();
+	//private List <GenClass> GenList = new ArrayList<GenClass>();
+	//private List <SMClass> SMList = new ArrayList<SMClass>();
+	//private List <RCClass> RCList = new ArrayList<RCClass>();
+	//private List <PowerTransClass> PowerTransList = new ArrayList<PowerTransClass>();
+	//private List <EnergyConsClass> EnergyConsList = new ArrayList<EnergyConsClass>();
+	//private List <TransWindingClass> TransWindingList = new ArrayList<TransWindingClass>();
+	//private List <BreakerClass> BreakerList = new ArrayList<BreakerClass>();
+	//private List <TapClass> TapList = new ArrayList<TapClass>();
 	//private List <TerminalClass> TerminalList = new ArrayList<TerminalClass>();
 	//private List <ConnectivityNodeClass> ConnectNodeList = new ArrayList<ConnectivityNodeClass>();
 	//private List <ACLineClass> ACLineList = new ArrayList<ACLineClass>();
