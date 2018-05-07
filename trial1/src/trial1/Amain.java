@@ -33,6 +33,10 @@ public class Amain {
 		ArrayList SubstationList = new ArrayList<String>();
 		
 		ArrayList VoltLevelList = new ArrayList<String>();
+		
+		ArrayList GeneratingList = new ArrayList<String>();
+		
+		ArrayList SynchronousList = new ArrayList<String>();
 
 		
 		
@@ -50,6 +54,17 @@ public class Amain {
 			VoltLevelClass volt = new VoltLevelClass();
 			volt.voltlevelfn(doc1, VoltLevelList);
 			System.out.println("List of Voltage Level : " + VoltLevelList);
+			
+		// Generating Unit information
+			GeneratingClass gen = new GeneratingClass();
+			gen.genfn(doc1, GeneratingList);
+			System.out.println("List of Generating Unit : " + GeneratingList);
+			
+		// Synchronous Machine information
+			SynMachClass syn = new SynMachClass();
+			syn.synfn(doc1, SynchronousList);
+			System.out.println("List of Generating Unit : " + GeneratingList);
+			
 		
 	}
 	catch(Exception e){
