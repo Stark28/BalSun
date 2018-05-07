@@ -1,10 +1,16 @@
 package trial1;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+
+import Project1Pack.BaseVoltClass;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
@@ -20,58 +26,24 @@ public class Amain {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc1 = dBuilder.parse(XmlFileEQ);
 		Document doc2 = dBuilder.parse(XmlFileSSH);
+		
 		//Extract required data from EQ file
-		basevoltfn(doc1);
-		substationfn(doc1);
+		ArrayList BaseVoltageList = new ArrayList<String>();
+		NodeList basevoltlist = doc1.getElementsByTagName("cim:BaseVoltage");
+		
+		// Base Voltage information
+			BaseVoltClass basevolt = new BaseVoltClass();
+			basevolt.basevoltfn(doc1, BaseVoltageList);
+			System.out.println("List of Base Voltage : " + BaseVoltageList);
+		
+		
 		
 	}
 	catch(Exception e){
 		e.printStackTrace();
 		}
 	}
+}
 	//public String getbasevoltlist() {
 	//	return  BaseVol;
 	//}
-
-public static void basevoltfn(Document doc1)
-{
-	NodeList basevoltlist = doc1.getElementsByTagName("cim:BaseVoltage");
-	System.out.println("Base Voltage : ");
-	for (int i = 0; i<basevoltlist.getLength(); i++) 
-	{
-	Node BaseVol = basevoltlist.item(i);
-	String rdfID;
-	double nominalValue; 
-	    
-	Element BVelement = (Element) BaseVol;
-	rdfID = BVelement.getAttribute("rdf:ID");
-	nominalValue = Double.parseDouble(BVelement.getElementsByTagName("cim:BaseVoltage.nominalVoltage").item(0).getTextContent());
-	System.out.println("Reference ID : " + rdfID);
-    System.out.println("Nominal Voltage : " + nominalValue);
-}
-}	 
-
-public static void substationfn(Document doc1) {
-	NodeList substationlist = doc1.getElementsByTagName("cim:Substation");
-	System.out.println("Substation : ");
-	for (int i = 0; i<substationlist.getLength(); i++) 
-	{
-	Node Sub = substationlist.item(i);
-	String rdfID;
-	String name; 
-	String regionID;    
-	
-	Element element = (Element) Sub;
-	rdfID = element.getAttribute("rdf:ID");
-	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
-	regionID = element.getElementsByTagName("cim:Substation.Region").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
-	
-	System.out.println("Reference ID : " + rdfID);
-    System.out.println("Name : " + name);
-    System.out.println("Region ID : " + regionID);
-}
-	
-}
-
-
-}
