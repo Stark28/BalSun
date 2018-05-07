@@ -7,6 +7,8 @@ import javax.xml.parsers.DocumentBuilder;
 import java.util.ArrayList;
 //import java.util.List;
 
+
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -66,9 +68,31 @@ public class main {
 			
 			// Base Voltage List done
 			for (int i = 0; i<basevoltList.getLength(); i++) {
-				BaseVoltClass basevolt = new BaseVoltClass();
-				basevolt.extractNode(basevoltList.item(i));
-				BaseVoltList.add(basevolt);
+				
+					Node BaseVol = basevoltlist.items(i);
+					
+					private String rdfID;
+					private double nominalValue;
+					//	
+					    public Element extractNode (Node BaseVol){
+							Element BVelement = (Element) BaseVol;
+							rdfID = BVelement.getElementsByTagName("rdf:ID");
+							nominalValue = Double.parseDouble(element.getElementsByTagName("cim:BaseVoltage.nominalVoltage").item(0).getTextContent());	
+							return BVelement;
+						}
+					 // 
+						public String getrdfID() {
+							return rdfID;
+						}
+						
+						public double getNomValue() {
+							return nominalValue;
+						}
+				
+				
+				//BaseVoltClass basevolt = new BaseVoltClass();
+				//basevolt.extractNode(basevoltList.item(i));
+				//BaseVoltList.add(basevolt);
 				}
 			
 			// Substation List done
