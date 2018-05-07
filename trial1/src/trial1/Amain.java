@@ -37,8 +37,18 @@ public class Amain {
 		ArrayList GeneratingList = new ArrayList<String>();
 		
 		ArrayList SynchronousList = new ArrayList<String>();
-
 		
+		ArrayList RegulatingList = new ArrayList<String>();
+		
+		ArrayList PowerTransList = new ArrayList<String>();
+		
+		//ArrayList EnergyList = new ArrayList<String>();
+
+		ArrayList PowerTransEndList = new ArrayList<String>();
+		
+		ArrayList BreakerList = new ArrayList<String>();
+		
+		ArrayList TapList = new ArrayList<String>();
 		
 		// Base Voltage information
 			BaseVoltClass basevolt = new BaseVoltClass();
@@ -62,10 +72,39 @@ public class Amain {
 			
 		// Synchronous Machine information
 			SynMachClass syn = new SynMachClass();
-			syn.synfn(doc1, SynchronousList);
-			System.out.println("List of Generating Unit : " + GeneratingList);
+			syn.synfn(doc1, doc2, SynchronousList);
+			System.out.println("List of Synchronous Machine : " + SynchronousList);
 			
-		
+		// Regulating Control information check done
+			RegulatingClass reg = new RegulatingClass();
+			reg.regfn(doc1, doc2, RegulatingList);
+			System.out.println("List of Regulating Control : " + SynchronousList);
+			
+		// Power Transformer information
+		    PowerTransClass power = new PowerTransClass();
+			power.powerfn(doc1, PowerTransList);
+			System.out.println("List of Power Transformer : " + PowerTransList);
+			
+		// Energy Consumer information
+		   // EnergyClass energy = new EnergyClass();
+			//energy.energyfn(doc1, doc2, EnergyList);
+			//System.out.println("List of Energy Consumer(Load) : " + EnergyList);
+			
+		// Power Transformer Winding information check done
+		    PowerTransEndClass powerend = new PowerTransEndClass();
+			powerend.powerendfn(doc1, PowerTransEndList);
+			System.out.println("List of Power Transformer End : " + PowerTransEndList);	
+			
+		// Breaker information check done
+		    BreakerClass breaker = new BreakerClass();
+			breaker.breakerfn(doc1, BreakerList);
+			System.out.println("List of Breaker : " + BreakerList);	
+			
+		// Tap Changer information
+		    TapClass tap = new TapClass();
+			tap.tapfn(doc1, TapList);
+			System.out.println("List of Tap Changer : " + TapList);
+			
 	}
 	catch(Exception e){
 		e.printStackTrace();

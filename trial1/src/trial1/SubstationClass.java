@@ -13,7 +13,7 @@ public class SubstationClass{
 public static ArrayList substationfn(Document doc1, ArrayList SubstationList)
 {
 	NodeList substationlist = doc1.getElementsByTagName("cim:Substation");
-	System.out.println("Substation : ");
+	System.out.println("***** Substation ***** ");
 	String rdfID = null;
 	String name; 
 	String regionID;

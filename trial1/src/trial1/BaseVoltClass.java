@@ -12,7 +12,7 @@ public class BaseVoltClass{
 public static ArrayList basevoltfn(Document doc1, ArrayList BaseVoltageList)
 {
 	NodeList basevoltlist = doc1.getElementsByTagName("cim:BaseVoltage");
-	System.out.println("Base Voltage : ");
+	System.out.println("***** Base Voltage ***** ");
 	String rdfID = null;
 	double nominalValue; 
 	

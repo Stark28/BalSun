@@ -12,7 +12,7 @@ public class VoltLevelClass{
 public static ArrayList voltlevelfn(Document doc1, ArrayList VoltLevelList)
 {
 	NodeList voltlevellist = doc1.getElementsByTagName("cim:VoltageLevel");
-	System.out.println("Voltage Level : ");
+	System.out.println("***** Voltage Level ***** ");
 	String rdfID = null;
 	String name; 
 	String subrdfID;
@@ -20,9 +20,9 @@ public static ArrayList voltlevelfn(Document doc1, ArrayList VoltLevelList)
 	
 	for (int i = 0; i<voltlevellist.getLength(); i++) 
 	{
-	Node Subs = voltlevellist.item(i);
+	Node Voltlv = voltlevellist.item(i);
 	   
-	Element element = (Element) Subs;
+	Element element = (Element) Voltlv;
 	rdfID = element.getAttribute("rdf:ID");
 	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
 	subrdfID = element.getElementsByTagName("cim:VoltageLevel.Substation").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");

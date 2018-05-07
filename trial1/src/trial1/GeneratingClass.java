@@ -12,7 +12,7 @@ public class GeneratingClass{
 public static ArrayList genfn(Document doc1, ArrayList GeneratingList)
 {
 	NodeList generatinglist = doc1.getElementsByTagName("cim:GeneratingUnit");
-	System.out.println("Generating Unit : ");
+	System.out.println("***** Generating Unit ***** ");
 	String rdfID = null;
 	String name; 
 	String MaxP;
@@ -22,9 +22,9 @@ public static ArrayList genfn(Document doc1, ArrayList GeneratingList)
 	
 	for (int i = 0; i<generatinglist.getLength(); i++) 
 	{
-	Node Subs = generatinglist.item(i);
+	Node Gen = generatinglist.item(i);
 	   
-	Element element = (Element) Subs;
+	Element element = (Element) Gen;
 	rdfID = element.getAttribute("rdf:ID");
 	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
 	MaxP = element.getElementsByTagName("cim:GeneratingUnit.maxOperatingP").item(0).getTextContent();
