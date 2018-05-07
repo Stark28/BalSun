@@ -29,10 +29,11 @@ public class Amain {
 		
 		//Extract required data from EQ file
 		ArrayList BaseVoltageList = new ArrayList<String>();
-		//NodeList basevoltlist = doc1.getElementsByTagName("cim:BaseVoltage");
 		
 		ArrayList SubstationList = new ArrayList<String>();
-		//NodeList substationlist = doc1.getElementsByTagName("cim:Substation");
+		
+		ArrayList VoltLevelList = new ArrayList<String>();
+
 		
 		
 		// Base Voltage information
@@ -45,6 +46,10 @@ public class Amain {
 			subs.substationfn(doc1, SubstationList);
 			System.out.println("List of Substation : " + SubstationList);
 		
+		// Voltage Level information
+			VoltLevelClass volt = new VoltLevelClass();
+			volt.voltlevelfn(doc1, VoltLevelList);
+			System.out.println("List of Voltage Level : " + VoltLevelList);
 		
 	}
 	catch(Exception e){
