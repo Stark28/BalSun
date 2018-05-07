@@ -1,5 +1,5 @@
 package assignment1;
 
-public class BaseVolt {
+public class LoadClass {
 
 }
