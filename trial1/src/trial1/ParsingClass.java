@@ -21,18 +21,33 @@ public class ParsingClass {
 		Document doc1 = dBuilder.parse(XmlFileEQ);
 		Document doc2 = dBuilder.parse(XmlFileSSH);
 		//Extract required data from EQ file
-		NodeList basevoltlist = doc1.getElementsByTagName("cim:BaseVoltage");
-		for (int i = 0; i<basevoltlist.getLength(); i++) 
-		{
-		Node BaseVol = basevoltlist.item(i);
-		}
+		basevoltfn(doc1);
 		
 	}
 	catch(Exception e){
 		e.printStackTrace();
 		}
 	}
-	public String getbasevoltlist() {
-		return  BaseVol;
-	}
+	//public String getbasevoltlist() {
+	//	return  BaseVol;
+	//}
+
+public static void basevoltfn(Document doc1)
+{
+	NodeList basevoltlist = doc1.getElementsByTagName("cim:BaseVoltage");
+	for (int i = 0; i<basevoltlist.getLength(); i++) 
+	{
+	Node BaseVol = basevoltlist.item(i);
+	String rdfID;
+	double nominalValue; 
+	    
+	Element BVelement = (Element) BaseVol;
+	rdfID = BVelement.getAttribute("rdf:ID");
+	nominalValue = Double.parseDouble(BVelement.getElementsByTagName("cim:BaseVoltage.nominalVoltage").item(0).getTextContent());
+	System.out.println("Reference ID : " + rdfID);
+    System.out.println("Nominal Voltage : " + nominalValue);
 }
+	 
+}
+}
+
