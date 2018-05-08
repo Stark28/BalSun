@@ -12,10 +12,11 @@ public class RegulatingClass{
 public static ArrayList regfn(Document doc1,Document doc2, ArrayList RegulatingList)
 {
 	NodeList reglist = doc1.getElementsByTagName("cim:RegulatingControl");
+	NodeList reg2list = doc2.getElementsByTagName("cim:RegulatingControl");
 	System.out.println("***** Regulating Control ***** ");
 	String rdfID = null;
 	String name; 
-	//String regionID;
+	String targetvalue = null;
 	
 	for (int i = 0; i<reglist.getLength(); i++) 
 	{
@@ -25,14 +26,22 @@ public static ArrayList regfn(Document doc1,Document doc2, ArrayList RegulatingL
 	rdfID = element.getAttribute("rdf:ID");
 	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
 	
+	for(int j=0; j<reg2list.getLength(); j++) {
+		Element ssh=(Element) reg2list.item(j);
+		String rdf_ID = ssh.getAttribute("rdf:about").replaceAll("#", "");
+		if(rdf_ID.equals(rdfID) ) {
+			targetvalue = ssh.getElementsByTagName("cim:RegulatingControl.targetValue").item(0).getTextContent();
+		}		
+	}
+
 	
 	System.out.println("Reference ID : " + rdfID);
     System.out.println("Name : " + name);
-    //System.out.println("RegionID : " + regionID);
+    System.out.println("targetValue : " + targetvalue);
     
     RegulatingList.add(rdfID);
     RegulatingList.add(name);
-    //RegulatingList.add(regionID);
+    RegulatingList.add(targetvalue);
     
 }
 	return(RegulatingList);

@@ -42,7 +42,7 @@ public class Amain {
 		
 		ArrayList PowerTransList = new ArrayList<String>();
 		
-		//ArrayList EnergyList = new ArrayList<String>();
+		ArrayList EnergyList = new ArrayList<String>();
 
 		ArrayList PowerTransEndList = new ArrayList<String>();
 		
@@ -85,10 +85,10 @@ public class Amain {
 			power.powerfn(doc1, PowerTransList);
 			System.out.println("List of Power Transformer : " + PowerTransList);
 			
-		// Energy Consumer information
-		   // EnergyClass energy = new EnergyClass();
-			//energy.energyfn(doc1, doc2, EnergyList);
-			//System.out.println("List of Energy Consumer(Load) : " + EnergyList);
+		 //Energy Consumer information
+		    EnergyClass energy = new EnergyClass();
+			energy.energyfn(doc1, doc2, EnergyList);
+			System.out.println("List of Energy Consumer(Load) : " + EnergyList);
 			
 		// Power Transformer Winding information check done
 		    PowerTransEndClass powerend = new PowerTransEndClass();
@@ -102,7 +102,7 @@ public class Amain {
 			
 		// Tap Changer information
 		    TapClass tap = new TapClass();
-			tap.tapfn(doc1, TapList);
+			tap.tapfn(doc1,doc2, TapList);
 			System.out.println("List of Tap Changer : " + TapList);
 			
 	}

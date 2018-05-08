@@ -9,58 +9,64 @@ import org.w3c.dom.NodeList;
 
 public class EnergyClass{
 	
-public static ArrayList energyfn(Document doc1,Document doc2, ArrayList SynchronousList)
+public static ArrayList energyfn(Document doc1,Document doc2, ArrayList EnergyList)
 {
-	NodeList synlist = doc1.getElementsByTagName("cim:SynchronousMachine");
-	NodeList syn2list = doc2.getElementsByTagName("cim:SynchronousMachine");
-	System.out.println("***** Synchronous Machine ***** ");
+	NodeList enerlist = doc1.getElementsByTagName("cim:EnergyConsumer");
+	NodeList enerbaselist = doc1.getElementsByTagName("cim:VoltageLevel");
+	NodeList ener2list = doc2.getElementsByTagName("cim:EnergyConsumer");
+	System.out.println("***** Energy Consumer ***** ");
 	String rdfID = null;
 	String name; 
-	String ratedS;
-	String GenUnitID;
-	String RegControlID;
 	String equipmentContainer;
-	//String BaseVoltID;
+	String BaseVoltID = null;
+	String P = null;
+	String Q = null;
 
 	
-	for (int i = 0; i<synlist.getLength(); i++) 
+	for (int i = 0; i<enerlist.getLength(); i++) 
 	{
-	Node Syn = synlist.item(i);
+	Node Ener = enerlist.item(i);
 	   
-	Element element = (Element) Syn;
+	Element element = (Element) Ener;
 	rdfID = element.getAttribute("rdf:ID");
 	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
-	ratedS = element.getElementsByTagName("cim:RotatingMachine.ratedS").item(0).getTextContent();
-	GenUnitID = element.getElementsByTagName("cim:RotatingMachine.GeneratingUnit").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
-	RegControlID = element.getElementsByTagName("cim:RegulatingCondEq.RegulatingControl").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
 	equipmentContainer = element.getElementsByTagName("cim:Equipment.EquipmentContainer").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
 	
-	//for(int j=0; j<synlist.getLength(); j++) {
-	//	Element volt=(Element) synlist.item(j);
-	//	String rdf_ID = volt.getAttribute("rdf:ID");
-	//	if(rdf_ID.equals(equipmentContainer) ) {
-	//		Node basevolt = volt.getElementsByTagName("cim:VoltageLevel.BaseVoltage").item(0);
-    //		Element basevolt_ele = (Element) basevolt;
-    //		BaseVoltID = basevolt_ele.getAttribute("rdf:resource");
-	//	}		
-	//}
+	for(int j=0; j<enerbaselist.getLength(); j++) {
+		Element volt=(Element) enerbaselist.item(j);
+		String rdf_ID = volt.getAttribute("rdf:ID");
+		if(rdf_ID.equals(equipmentContainer) ) {
+			Node basevolt = volt.getElementsByTagName("cim:VoltageLevel.BaseVoltage").item(0);
+    		Element basevolt_ele = (Element) basevolt;
+   		BaseVoltID = basevolt_ele.getAttribute("rdf:resource").replaceAll("#","");
+		}		
+	}
+	
+	for(int j=0; j<ener2list.getLength(); j++) {
+		Element ssh=(Element) ener2list.item(j);
+		String rdf_ID = ssh.getAttribute("rdf:about").replaceAll("#", "");
+		if(rdf_ID.equals(rdfID) ) {
+            P = ssh.getElementsByTagName("cim:EnergyConsumer.p").item(0).getTextContent();
+            Q = ssh.getElementsByTagName("cim:EnergyConsumer.q").item(0).getTextContent();
+		}		
+	}
+
 	
 	System.out.println("Reference ID : " + rdfID);
     System.out.println("Name : " + name);
-    System.out.println("ratedS : " + ratedS);
-    System.out.println("GeneratingUnit rdfID : " + GenUnitID);
-    System.out.println("RegulatingControl rdfID : " + RegControlID);
+    System.out.println("P : " + P);
+    System.out.println("Q : " + Q);
     System.out.println("Equipmentcontainer rdfID : " + equipmentContainer);
-    //System.out.println("base Voltage rdfID : " + BaseVoltID);
+    System.out.println("base Voltage rdfID : " + BaseVoltID);
     
-    SynchronousList.add(rdfID);
-    SynchronousList.add(name);
-    SynchronousList.add(ratedS);
-    SynchronousList.add(GenUnitID);
-    SynchronousList.add(RegControlID);
-    SynchronousList.add(equipmentContainer);
+    EnergyList.add(rdfID);
+    EnergyList.add(name);
+    EnergyList.add(P);
+    EnergyList.add(Q);
+    EnergyList.add(equipmentContainer);
+    EnergyList.add(BaseVoltID);
     
 	}
-	return(SynchronousList);
+	return(EnergyList);
 }
 }

@@ -12,11 +12,13 @@ public class BreakerClass{
 public static ArrayList breakerfn(Document doc1, ArrayList BreakerList)
 {
 	NodeList breakerlist = doc1.getElementsByTagName("cim:Breaker");
+	NodeList breakerbaselist = doc1.getElementsByTagName("cim:VoltageLevel");
 	System.out.println("***** Breaker ***** ");
 	String rdfID = null;
 	String name; 
 	String state;
 	String equipmentContainer;
+	String BaseVoltID = null;
 
 	
 	for (int i = 0; i<breakerlist.getLength(); i++) 
@@ -29,15 +31,27 @@ public static ArrayList breakerfn(Document doc1, ArrayList BreakerList)
 	state = element.getElementsByTagName("cim:Switch.normalOpen").item(0).getTextContent();
 	equipmentContainer = element.getElementsByTagName("cim:Equipment.EquipmentContainer").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
 	
+	for(int j=0; j<breakerbaselist.getLength(); j++) {
+		Element volt=(Element) breakerbaselist.item(j);
+		String rdf_ID = volt.getAttribute("rdf:ID");
+		if(rdf_ID.equals(equipmentContainer) ) {
+			Node basevolt = volt.getElementsByTagName("cim:VoltageLevel.BaseVoltage").item(0);
+    		Element basevolt_ele = (Element) basevolt;
+    		BaseVoltID = basevolt_ele.getAttribute("rdf:resource").replaceAll("#","");
+		}		
+	}
+	
 	System.out.println("Reference ID : " + rdfID);
     System.out.println("Name : " + name);
     System.out.println("State : " + state);
     System.out.println("Equipmentcontainer rdfID : " + equipmentContainer);
+    System.out.println("base Voltage rdfID : " + BaseVoltID);
     
     BreakerList.add(rdfID);
     BreakerList.add(name);
     BreakerList.add(state);
     BreakerList.add(equipmentContainer);
+    BreakerList.add(BaseVoltID);
     
 	}
 	return(BreakerList);

@@ -9,13 +9,14 @@ import org.w3c.dom.NodeList;
 
 public class TapClass{
 	
-public static ArrayList tapfn(Document doc1, ArrayList TapList)
+public static ArrayList tapfn(Document doc1, Document doc2, ArrayList TapList)
 {
 	NodeList taplist = doc1.getElementsByTagName("cim:RatioTapChanger");
+	NodeList tap2list = doc2.getElementsByTagName("cim:RatioTapChanger");
 	System.out.println("***** Tap Changer ***** ");
 	String rdfID = null;
 	String name; 
-	//String step;
+	String step = null;
 	
 	for (int i = 0; i<taplist.getLength(); i++) 
 	{
@@ -26,13 +27,22 @@ public static ArrayList tapfn(Document doc1, ArrayList TapList)
 	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
 	//step = element.getElementsByTagName("cim:TapChanger.step").item(0).getTextContent();
 	
+	for(int j=0; j<tap2list.getLength(); j++) {
+		Element ssh=(Element) tap2list.item(j);
+		String rdf_ID = ssh.getAttribute("rdf:about").replaceAll("#", "");
+		if(rdf_ID.equals(rdfID) ) {
+			step = ssh.getElementsByTagName("cim:TapChanger.step").item(0).getTextContent();
+		}		
+	}
+
+	
 	System.out.println("Reference ID : " + rdfID);
     System.out.println("Name : " + name);
-    //System.out.println("Step : " + step);
+    System.out.println("Step : " + step);
     
     TapList.add(rdfID);
     TapList.add(name);
-    //TapList.add(step);
+    TapList.add(step);
     
 }
 	return(TapList);
