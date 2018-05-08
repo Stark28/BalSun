@@ -29,6 +29,7 @@ public static ArrayList synfn(Document doc1,Document doc2, ArrayList Synchronous
 	for (int i = 0; i<synlist.getLength(); i++) 
 	{
 	Node Syn = synlist.item(i);
+	int a = i + 1;
 	   
 	Element element = (Element) Syn;
 	rdfID = element.getAttribute("rdf:ID");
@@ -57,6 +58,7 @@ public static ArrayList synfn(Document doc1,Document doc2, ArrayList Synchronous
 		}		
 	}
 	
+	System.out.println("Synchronous Machine " + a + " : " );
 	System.out.println("Reference ID : " + rdfID);
     System.out.println("Name : " + name);
     System.out.println("ratedS : " + ratedS);

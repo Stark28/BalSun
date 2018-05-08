@@ -26,6 +26,7 @@ public static ArrayList energyfn(Document doc1,Document doc2, ArrayList EnergyLi
 	for (int i = 0; i<enerlist.getLength(); i++) 
 	{
 	Node Ener = enerlist.item(i);
+	int a = i + 1;
 	   
 	Element element = (Element) Ener;
 	rdfID = element.getAttribute("rdf:ID");
@@ -52,6 +53,7 @@ public static ArrayList energyfn(Document doc1,Document doc2, ArrayList EnergyLi
 	}
 
 	
+	System.out.println("Energy Consumer " + a + " : " );
 	System.out.println("Reference ID : " + rdfID);
     System.out.println("Name : " + name);
     System.out.println("P : " + P);

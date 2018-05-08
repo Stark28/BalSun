@@ -21,6 +21,7 @@ public static ArrayList tapfn(Document doc1, Document doc2, ArrayList TapList)
 	for (int i = 0; i<taplist.getLength(); i++) 
 	{
 	Node Tap = taplist.item(i);
+	int a = i + 1;
 	   
 	Element element = (Element) Tap;
 	rdfID = element.getAttribute("rdf:ID");
@@ -35,7 +36,7 @@ public static ArrayList tapfn(Document doc1, Document doc2, ArrayList TapList)
 		}		
 	}
 
-	
+	System.out.println("Ratio Tap Changer " + a + " : " );
 	System.out.println("Reference ID : " + rdfID);
     System.out.println("Name : " + name);
     System.out.println("Step : " + step);

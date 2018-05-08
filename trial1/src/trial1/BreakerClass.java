@@ -24,6 +24,7 @@ public static ArrayList breakerfn(Document doc1, ArrayList BreakerList)
 	for (int i = 0; i<breakerlist.getLength(); i++) 
 	{
 	Node breaker1 = breakerlist.item(i);
+	int a = i + 1;
 	   
 	Element element = (Element) breaker1;
 	rdfID = element.getAttribute("rdf:ID");
@@ -41,6 +42,7 @@ public static ArrayList breakerfn(Document doc1, ArrayList BreakerList)
 		}		
 	}
 	
+	System.out.println("Breaker " + a + " : " );
 	System.out.println("Reference ID : " + rdfID);
     System.out.println("Name : " + name);
     System.out.println("State : " + state);

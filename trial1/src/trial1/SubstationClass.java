@@ -21,12 +21,14 @@ public static ArrayList substationfn(Document doc1, ArrayList SubstationList)
 	for (int i = 0; i<substationlist.getLength(); i++) 
 	{
 	Node Subs = substationlist.item(i);
+	int a = i + 1;
 	   
 	Element element = (Element) Subs;
 	rdfID = element.getAttribute("rdf:ID");
 	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
 	regionID = element.getElementsByTagName("cim:Substation.Region").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
 	
+	System.out.println("Substation " + a + " : " );
 	System.out.println("Reference ID : " + rdfID);
     System.out.println("Name : " + name);
     System.out.println("RegionID : " + regionID);

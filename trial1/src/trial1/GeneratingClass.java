@@ -23,7 +23,8 @@ public static ArrayList genfn(Document doc1, ArrayList GeneratingList)
 	for (int i = 0; i<generatinglist.getLength(); i++) 
 	{
 	Node Gen = generatinglist.item(i);
-	   
+	int a = i + 1;   
+	
 	Element element = (Element) Gen;
 	rdfID = element.getAttribute("rdf:ID");
 	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
@@ -31,6 +32,7 @@ public static ArrayList genfn(Document doc1, ArrayList GeneratingList)
 	MinP = element.getElementsByTagName("cim:GeneratingUnit.minOperatingP").item(0).getTextContent();
 	equipmentContainer = element.getElementsByTagName("cim:Equipment.EquipmentContainer").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
 	
+	System.out.println("Generating Unit " + a + " : " );
 	System.out.println("Reference ID : " + rdfID);
     System.out.println("Name : " + name);
     System.out.println("MaxOperatingP : " + MaxP);

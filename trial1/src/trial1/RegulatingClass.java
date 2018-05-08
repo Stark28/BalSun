@@ -21,6 +21,7 @@ public static ArrayList regfn(Document doc1,Document doc2, ArrayList RegulatingL
 	for (int i = 0; i<reglist.getLength(); i++) 
 	{
 	Node reg = reglist.item(i);
+	int a = i + 1;
 	   
 	Element element = (Element) reg;
 	rdfID = element.getAttribute("rdf:ID");
@@ -34,7 +35,7 @@ public static ArrayList regfn(Document doc1,Document doc2, ArrayList RegulatingL
 		}		
 	}
 
-	
+	System.out.println("Regulating Cotrol " + a + " : " );
 	System.out.println("Reference ID : " + rdfID);
     System.out.println("Name : " + name);
     System.out.println("targetValue : " + targetvalue);
