@@ -30,14 +30,9 @@ public class Amain {
 		A.parsing();
 		
 		DBSQL b = new DBSQL("root", "1008615szy");
-		//b = DBSQL2();
-		
-		
-		
+		//b = DBSQL2();	
 		
 	}
-	
-	
 	
 	public void parsing ()	{	
 		
@@ -96,6 +91,8 @@ public class Amain {
 			BaseVoltClass basevolt = new BaseVoltClass();
 			basevolt.basevoltfn(doc1, BaseVoltageList);
 			System.out.println("List of Base Voltage : " + BaseVoltageList);
+			
+			
 			
 			System.out.println("*** Base Voltage ***");
 			for(int i = 0; i < BaseVoltageList.size(); i = i + 2) {

@@ -3,10 +3,15 @@ package trial1;
 import java.sql.*;
 
 public class DBSQL {
-	
+	 String sql = null;
+	 Connection conn = null;
+	 Statement stmt = null;
+	   
 	DBSQL(String root, String balsun){
     	
     	StartUp();
+    	createTables();
+    	//BaseVoltageTab();
 	}
 	
 	
@@ -20,9 +25,7 @@ public class DBSQL {
 		String USER = "root"; 
     	String PASS = "1008615szy";
 
-		Connection conn = null;
-	    Statement stmt = null;
-	    String sql = null;
+		
 		
 		// StartUp method for connecting to SQL server and creating the desirable database
 	    try{
