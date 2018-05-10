@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.JFileChooser;
 
-public static void class SqlMain (String EQ, String SSH, String User_name, String Password)
+public static class SqlMain (String EQ, String SSH, String User_name, String Password)
 {
 			File XmlFileEQ = new File("Assignment_EQ_reduced.xml");
 			File XmlFileSSH = new File("Assignment_SSH_reduced.xml");
@@ -18,7 +18,7 @@ public static void class SqlMain (String EQ, String SSH, String User_name, Strin
 			parsingObject.parsing();
 			
 			//Creating a new Object by use of pre-defined SQLdataBase class and corresponding methods
-			SQLdataBase mySQL = new SQLdataBase(USERN, PASSW);
+			DBSQL mySQL = new DBSQL("root", "1008615szy");
 			mySQL.StartUp(); // starting up the connection with SQL server and create the desired database
 			mySQL.createTables(); // creating the tables
 			
@@ -26,7 +26,14 @@ public static void class SqlMain (String EQ, String SSH, String User_name, Strin
 			//Printing out the BaseVoltageList for the user
 			//Inserting data into BaseVoltage table
 			System.out.println("*** Base Voltage ***");
-			for (BaseVoltClass newBaseV : parsingObject.getBaseVoltList()) {
+			for(int i = 0; i < BaseVoltageList.size(); i = i + 2) {
+				String BaseVrdfID = BaseVoltageList.get(i);
+				double BaseNom = BaseVoltageList.get(i + 1);
+				mySQL.BaseVoltageTab(BaseVrdfID, BaseNom);
+				System.out.println("rdfID: " + BaseVrdfID +"\n"+ "Nominal Value: " + BaseNom);
+				
+			}
+			for (BaseVoltClass newBaseV : parsingObject.BaseVoltList) {
 				String BaseVrdfID = newBaseV.getrdfID();
 				double BaseNom = newBaseV.getNomValue();
 				mySQL.BaseVoltageTab(BaseVrdfID, BaseNom);
