@@ -100,7 +100,6 @@ public class Amain {
 				double BaseNom = (double) BaseVoltageList.get(i + 1);
 				mySQL.BaseVoltageTab(BaseVrdfID, BaseNom);
 				System.out.println("rdfID: " + BaseVrdfID +"\n"+ "Nominal Value: " + BaseNom);
-				
 			}
 		
 		// Substation information
@@ -229,8 +228,11 @@ public class Amain {
 	
 	}
 
+<<<<<<< HEAD
+=======
 
 
 
+>>>>>>> f255a371230f72e3a6c829682fd25107b20cebcf
 }
 
