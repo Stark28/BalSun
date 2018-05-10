@@ -9,6 +9,14 @@ import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+import java.io.*;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.*;
+import java.lang.Object;
+import javax.swing.*;
+import java.awt.event.*;
+import javax.swing.JFileChooser;
 //import Project1Pack.BaseVoltClass;
 
 import org.w3c.dom.Node;
@@ -73,12 +81,23 @@ public class Amain {
 		
 		ArrayList LinearShuntCompensatorList = new ArrayList<String>();
 		
-		
+		DBSQL mySQL = new DBSQL("root", "1008615szy");
+		mySQL.StartUp(); // starting up the connection with SQL server and create the desired database
+		mySQL.createTables(); 
 		
 		// Base Voltage information
 			BaseVoltClass basevolt = new BaseVoltClass();
 			basevolt.basevoltfn(doc1, BaseVoltageList);
 			System.out.println("List of Base Voltage : " + BaseVoltageList);
+			
+			System.out.println("*** Base Voltage ***");
+			for(int i = 0; i < BaseVoltageList.size(); i = i + 2) {
+				String BaseVrdfID = (String) BaseVoltageList.get(i);
+				double BaseNom = (double) BaseVoltageList.get(i + 1);
+				mySQL.BaseVoltageTab(BaseVrdfID, BaseNom);
+				System.out.println("rdfID: " + BaseVrdfID +"\n"+ "Nominal Value: " + BaseNom);
+				
+			}
 		
 		// Substation information
 			SubstationClass subs = new SubstationClass();
