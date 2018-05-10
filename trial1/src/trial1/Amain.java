@@ -92,7 +92,7 @@ public class Amain {
 			basevolt.basevoltfn(doc1, BaseVoltageList);
 			System.out.println("List of Base Voltage : " + BaseVoltageList);
 			
-			
+		// Store the value to SQL database
 			
 			System.out.println("*** Base Voltage ***");
 			for(int i = 0; i < BaseVoltageList.size(); i = i + 2) {

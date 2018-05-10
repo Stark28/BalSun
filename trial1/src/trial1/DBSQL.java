@@ -9,9 +9,6 @@ public class DBSQL {
 	   
 	DBSQL(String root, String balsun){
     	
-    	StartUp();
-    	createTables();
-    	//BaseVoltageTab();
 	}
 	
 	
@@ -185,6 +182,8 @@ public class DBSQL {
 	
 	public void SubstationTab(String rdfID, String Name,String Region_rdfID){
 		try {
+			
+			System.out.println("Busbar \n \n \n");
 			String query = "INSERT INTO Substation VALUES(?,?,?)";
 			PreparedStatement preparedStmt = conn.prepareStatement(query);
 			preparedStmt.setString(1,rdfID);
