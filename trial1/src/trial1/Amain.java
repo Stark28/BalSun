@@ -21,7 +21,14 @@ public class Amain {
 		Amain A = new Amain();
 		A.parsing();
 		
+		DBSQL b = new DBSQL("root", "1008615szy");
+		//b = DBSQL2();
+		
+		
+		
+		
 	}
+	
 	
 	
 	public void parsing ()	{	
@@ -182,16 +189,16 @@ public class Amain {
 			for(int i = 0; i < ConnectivitycontainerNodeList.size(); i++ ) {
 				for(int j = 0; j < BusbarList.size(); j++) {
 					if(ConnectivitycontainerNodeList.get(i).equals(BusbarList.get(j))) {
-	                    a2[i][0] = j;
-	                    a2[i][1] = i;
+	                    a2[i][0] = i;
+	                    a2[i][1] = j;
 					}
 				}	
 			}
 		
-		//System.out.println(a2);
+		// System.out.println(a2);
 			for(int i = 0; i < ConnectivitycontainerNodeList.size(); i++) {
-				System.out.print("Busbar " + a2[i][0] + " ");
-				System.out.println("ConnectivityNode " + a2[i][1]);
+				System.out.print("ConnectivityNode " + a2[i][0] + " ");
+				System.out.println("Busbar " + a2[i][1]);
 				
 			}
  
@@ -205,13 +212,9 @@ public class Amain {
 		}
 	
 	}
-<<<<<<< HEAD
 
-	public static void Ybus() {
-		
-	}
-=======
-	
->>>>>>> babc95b64152e97d8e5a81e3655203da49ba7e70
+
+
+
 }
 

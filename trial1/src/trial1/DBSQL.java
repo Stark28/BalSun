@@ -5,25 +5,26 @@ import java.sql.*;
 public class DBSQL {
 	
 	DBSQL(String root, String balsun){
-    	USER = root; 
-    	PASS = balsun;
+    	
+    	StartUp();
 	}
 	
-	// JDBC driver name and database URL
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	static final String DB_URL = "jdbc:mysql://localhost/";
-	// Database Credentials
-	private final String USER; 
-	private final String PASS;
 	
-
-	Connection conn = null;
-    Statement stmt = null;
-    String sql = null;
-	
-	// StartUp method for connecting to SQL server and creating the desirable database
 	public void StartUp(){
-	    
+		// JDBC driver name and database URL
+		final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
+		final String DB_URL = "jdbc:mysql://localhost/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		final String DB_URL_MicroGrid = "jdbc:mysql://localhost/MicroGrid?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		
+		// Database Credentials
+		String USER = "root"; 
+    	String PASS = "1008615szy";
+
+		Connection conn = null;
+	    Statement stmt = null;
+	    String sql = null;
+		
+		// StartUp method for connecting to SQL server and creating the desirable database
 	    try{
 		      // Register JDBC driver
 		      Class.forName(JDBC_DRIVER);
@@ -42,7 +43,7 @@ public class DBSQL {
 		      System.out.println("Database created successfully..."); 
 		      
 		      // Connect to the created database MicroGrid
-		       conn = DriverManager.getConnection(DB_URL + "MicroGrid", USER, PASS);
+		       conn = DriverManager.getConnection(DB_URL_MicroGrid, USER, PASS);
 		       sql = "USE MicroGrid"; 
 		       stmt.executeUpdate(sql) ; // execute query 
 	    }
