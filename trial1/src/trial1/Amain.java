@@ -29,8 +29,10 @@ public class Amain {
 		Amain A = new Amain();
 		A.parsing();
 		
+		DBSQL b = new DBSQL("root", "1008615szy");
+		//b = DBSQL2();	
+		
 	}
-	
 	
 	public void parsing ()	{	
 		
@@ -89,6 +91,8 @@ public class Amain {
 			BaseVoltClass basevolt = new BaseVoltClass();
 			basevolt.basevoltfn(doc1, BaseVoltageList);
 			System.out.println("List of Base Voltage : " + BaseVoltageList);
+			
+			
 			
 			System.out.println("*** Base Voltage ***");
 			for(int i = 0; i < BaseVoltageList.size(); i = i + 2) {
@@ -200,16 +204,16 @@ public class Amain {
 			for(int i = 0; i < ConnectivitycontainerNodeList.size(); i++ ) {
 				for(int j = 0; j < BusbarList.size(); j++) {
 					if(ConnectivitycontainerNodeList.get(i).equals(BusbarList.get(j))) {
-	                    a2[i][0] = j;
-	                    a2[i][1] = i;
+	                    a2[i][0] = i;
+	                    a2[i][1] = j;
 					}
 				}	
 			}
 		
-		//System.out.println(a2);
+		// System.out.println(a2);
 			for(int i = 0; i < ConnectivitycontainerNodeList.size(); i++) {
-				System.out.print("Busbar " + a2[i][0] + " ");
-				System.out.println("ConnectivityNode " + a2[i][1]);
+				System.out.print("ConnectivityNode " + a2[i][0] + " ");
+				System.out.println("Busbar " + a2[i][1]);
 				
 			}
  
@@ -224,5 +228,11 @@ public class Amain {
 	
 	}
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> f255a371230f72e3a6c829682fd25107b20cebcf
 }
 
