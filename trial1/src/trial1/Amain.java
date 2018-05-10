@@ -20,7 +20,7 @@ public class Amain {
 		
 		Amain A = new Amain();
 		A.parsing();
-		A.DBSQL();
+		
 	}
 	
 	
@@ -64,6 +64,8 @@ public class Amain {
 		ArrayList TerminalconnectList = new ArrayList<String>();
 		
 		ArrayList ConnectivityNodeList = new ArrayList<String>();
+		
+		ArrayList ConnectivitycontainerNodeList = new ArrayList<String>();
 		
 		ArrayList ACLineList = new ArrayList<String>();
 		
@@ -141,20 +143,60 @@ public class Amain {
 		// ConnectivityNode information
 		    ConnectivityNodeClass connect = new ConnectivityNodeClass();
 			connect.connectfn(doc1, ConnectivityNodeList);
+		    ConnectivityNodecontainerClass connect2 = new ConnectivityNodecontainerClass();
+			connect2.connect2fn(doc1, ConnectivitycontainerNodeList);
 			System.out.println("List of Connectivity Node : " + ConnectivityNodeList);
+			System.out.println("List of Connectivity Node : " + ConnectivitycontainerNodeList);
+			
+		// Busbar information check done
+		    BusbarClass bus = new BusbarClass();
+			bus.busbarfn(doc1, BusbarList);
+			System.out.println("List of Busbar : " + BusbarList);	
+
 			
 		//	Find the connectivity node and terminal pairs that matches
+			int [][] a1;
+			a1 = new int[TerminalconnectList.size()][2] ; 
 			for(int i = 0; i < ConnectivityNodeList.size(); i++ ) {
 				for(int j = 0; j < TerminalconnectList.size(); j++) {
 					if (ConnectivityNodeList.get(i).equals(TerminalconnectList.get(j))) {
 						int a = i + 1;
 						int b = j + 1;
-						System.out.println("ConnectivityNode " + a + " matches Terminal " + b );
+                        a1[j][0] = j;
+                        a1[j][1] = i;
+						System.out.println("ConnectivityNode " + i + " matches Terminal " + j );
 					}
 				}
 			}
 			
+		//System.out.println(a1);
+			for(int i = 0; i < TerminalconnectList.size(); i++) {
+				System.out.print("Terminal " + a1[i][0] + " ");
+				System.out.println("ConnectivityNode " + a1[i][1]);
+				
+			}
+		
+		// Find the connectivity node and busbar that matches
+			int [][]a2;
+			a2 = new int[ConnectivitycontainerNodeList.size()][2];
+			for(int i = 0; i < ConnectivitycontainerNodeList.size(); i++ ) {
+				for(int j = 0; j < BusbarList.size(); j++) {
+					if(ConnectivitycontainerNodeList.get(i).equals(BusbarList.get(j))) {
+	                    a2[i][0] = j;
+	                    a2[i][1] = i;
+					}
+				}	
+			}
+		
+		//System.out.println(a2);
+			for(int i = 0; i < ConnectivitycontainerNodeList.size(); i++) {
+				System.out.print("Busbar " + a2[i][0] + " ");
+				System.out.println("ConnectivityNode " + a2[i][1]);
+				
+			}
+ 
 			
+		//  
 			
 	}
 
@@ -163,9 +205,13 @@ public class Amain {
 		}
 	
 	}
+<<<<<<< HEAD
 
 	public static void Ybus() {
 		
 	}
+=======
+	
+>>>>>>> babc95b64152e97d8e5a81e3655203da49ba7e70
 }
 
