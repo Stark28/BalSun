@@ -50,6 +50,20 @@ public class Amain {
 		
 		ArrayList TapList = new ArrayList<String>();
 		
+		ArrayList TerminalconductingList = new ArrayList<String>();
+		
+		ArrayList TerminalconnectList = new ArrayList<String>();
+		
+		ArrayList ConnectivityNodeList = new ArrayList<String>();
+		
+		ArrayList ACLineList = new ArrayList<String>();
+		
+		ArrayList BusbarList = new ArrayList<String>();
+		
+		ArrayList LinearShuntCompensatorList = new ArrayList<String>();
+		
+		
+		
 		// Base Voltage information
 			BaseVoltClass basevolt = new BaseVoltClass();
 			basevolt.basevoltfn(doc1, BaseVoltageList);
@@ -105,10 +119,43 @@ public class Amain {
 			tap.tapfn(doc1,doc2, TapList);
 			System.out.println("List of Tap Changer : " + TapList);
 			
+		// Terminal information
+		    TerminalconductingClass ter = new TerminalconductingClass();
+			ter.terfn(doc1, TerminalconductingList);
+			TerminalconnectClass ter2 = new TerminalconnectClass();
+			ter2.ter2fn(doc1, TerminalconnectList);
+			System.out.println("List of Terminalconducting : " + TerminalconductingList);
+			System.out.println("List of Terminalconnect : " + TerminalconnectList);
+			//System.out.println("First element of the list of Terminal : " + TerminalList.get(0));
+
+			
+		// ConnectivityNode information
+		    ConnectivityNodeClass connect = new ConnectivityNodeClass();
+			connect.connectfn(doc1, ConnectivityNodeList);
+			System.out.println("List of Connectivity Node : " + ConnectivityNodeList);
+			
+		//	Find the connectivity node and terminal pairs that matches
+			for(int i = 0; i < ConnectivityNodeList.size(); i++ ) {
+				for(int j = 0; j < TerminalconnectList.size(); j++) {
+					if (ConnectivityNodeList.get(i).equals(TerminalconnectList.get(j))) {
+						int a = i + 1;
+						int b = j + 1;
+						System.out.println("ConnectivityNode " + a + " matches Terminal " + b );
+					}
+				}
+			}
+			
+			
+			
 	}
 	catch(Exception e){
 		e.printStackTrace();
 		}
+	
+	}
+	
+	public static void Ybus() {
+		
 	}
 }
 
