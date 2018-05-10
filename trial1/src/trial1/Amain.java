@@ -17,7 +17,16 @@ import org.w3c.dom.Element;
 public class Amain {
 	
 	public static void main(String[] args){
-	try {
+		
+		Amain A = new Amain();
+		A.parsing();
+		A.DBSQL();
+	}
+	
+	
+	public void parsing ()	{	
+		
+		try {
 		//import the EQ and SSH files that we are going to use
 		File XmlFileEQ = new File("Assignment_EQ_reduced.xml");
 		File XmlFileSSH = new File("Assignment_SSH_reduced.xml");
@@ -148,12 +157,13 @@ public class Amain {
 			
 			
 	}
+
 	catch(Exception e){
 		e.printStackTrace();
 		}
 	
 	}
-	
+
 	public static void Ybus() {
 		
 	}
