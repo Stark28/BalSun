@@ -19,8 +19,8 @@ public static ArrayList energyfn(Document doc1,Document doc2, ArrayList EnergyLi
 	String name; 
 	String equipmentContainer;
 	String BaseVoltID = null;
-	String P = null;
-	String Q = null;
+	double P = 0;
+	double Q = 0;
 
 	
 	for (int i = 0; i<enerlist.getLength(); i++) 
@@ -47,8 +47,8 @@ public static ArrayList energyfn(Document doc1,Document doc2, ArrayList EnergyLi
 		Element ssh=(Element) ener2list.item(j);
 		String rdf_ID = ssh.getAttribute("rdf:about").replaceAll("#", "");
 		if(rdf_ID.equals(rdfID) ) {
-            P = ssh.getElementsByTagName("cim:EnergyConsumer.p").item(0).getTextContent();
-            Q = ssh.getElementsByTagName("cim:EnergyConsumer.q").item(0).getTextContent();
+            P = Double.parseDouble(ssh.getElementsByTagName("cim:EnergyConsumer.p").item(0).getTextContent());
+            Q = Double.parseDouble(ssh.getElementsByTagName("cim:EnergyConsumer.q").item(0).getTextContent());
 		}		
 	}
 

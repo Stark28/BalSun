@@ -15,15 +15,15 @@ public static ArrayList synfn(Document doc1,Document doc2, ArrayList Synchronous
 	NodeList synbaselist = doc1.getElementsByTagName("cim:VoltageLevel");
 	NodeList syn2list = doc2.getElementsByTagName("cim:SynchronousMachine");
 	System.out.println("***** Synchronous Machine ***** ");
-	String rdfID = null;
+	String rdfID;
 	String name; 
-	String ratedS;
+	double ratedS;
 	String GenUnitID;
 	String RegControlID;
 	String equipmentContainer;
 	String BaseVoltID = null;
-	String P = null;
-	String Q = null;
+	double P = 0; 
+	double Q = 0;
 
 	
 	for (int i = 0; i<synlist.getLength(); i++) 
@@ -34,7 +34,7 @@ public static ArrayList synfn(Document doc1,Document doc2, ArrayList Synchronous
 	Element element = (Element) Syn;
 	rdfID = element.getAttribute("rdf:ID");
 	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
-	ratedS = element.getElementsByTagName("cim:RotatingMachine.ratedS").item(0).getTextContent();
+	ratedS = Double.parseDouble(element.getElementsByTagName("cim:RotatingMachine.ratedS").item(0).getTextContent());
 	GenUnitID = element.getElementsByTagName("cim:RotatingMachine.GeneratingUnit").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
 	RegControlID = element.getElementsByTagName("cim:RegulatingCondEq.RegulatingControl").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
 	equipmentContainer = element.getElementsByTagName("cim:Equipment.EquipmentContainer").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
@@ -53,8 +53,8 @@ public static ArrayList synfn(Document doc1,Document doc2, ArrayList Synchronous
 		Element ssh=(Element) syn2list.item(j);
 		String rdf_ID = ssh.getAttribute("rdf:about").replaceAll("#", "");
 		if(rdf_ID.equals(rdfID) ) {
-            P=ssh.getElementsByTagName("cim:RotatingMachine.p").item(0).getTextContent();
-            Q=ssh.getElementsByTagName("cim:RotatingMachine.q").item(0).getTextContent();
+            P=Double.parseDouble(ssh.getElementsByTagName("cim:RotatingMachine.p").item(0).getTextContent());
+            Q=Double.parseDouble(ssh.getElementsByTagName("cim:RotatingMachine.q").item(0).getTextContent());
 		}		
 	}
 	

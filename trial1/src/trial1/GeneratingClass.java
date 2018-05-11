@@ -15,8 +15,8 @@ public static ArrayList genfn(Document doc1, ArrayList GeneratingList)
 	System.out.println("***** Generating Unit ***** ");
 	String rdfID = null;
 	String name; 
-	String MaxP;
-	String MinP;
+	double MaxP;
+	double MinP;
 	String equipmentContainer;
 
 	
@@ -28,8 +28,8 @@ public static ArrayList genfn(Document doc1, ArrayList GeneratingList)
 	Element element = (Element) Gen;
 	rdfID = element.getAttribute("rdf:ID");
 	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
-	MaxP = element.getElementsByTagName("cim:GeneratingUnit.maxOperatingP").item(0).getTextContent();
-	MinP = element.getElementsByTagName("cim:GeneratingUnit.minOperatingP").item(0).getTextContent();
+	MaxP = Double.parseDouble(element.getElementsByTagName("cim:GeneratingUnit.maxOperatingP").item(0).getTextContent());
+	MinP = Double.parseDouble(element.getElementsByTagName("cim:GeneratingUnit.minOperatingP").item(0).getTextContent());
 	equipmentContainer = element.getElementsByTagName("cim:Equipment.EquipmentContainer").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
 	
 	System.out.println("Generating Unit " + a + " : " );

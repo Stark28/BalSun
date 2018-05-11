@@ -16,7 +16,7 @@ public static ArrayList regfn(Document doc1,Document doc2, ArrayList RegulatingL
 	System.out.println("***** Regulating Control ***** ");
 	String rdfID = null;
 	String name; 
-	String targetvalue = null;
+	double targetvalue = 0;
 	
 	for (int i = 0; i<reglist.getLength(); i++) 
 	{
@@ -31,7 +31,7 @@ public static ArrayList regfn(Document doc1,Document doc2, ArrayList RegulatingL
 		Element ssh=(Element) reg2list.item(j);
 		String rdf_ID = ssh.getAttribute("rdf:about").replaceAll("#", "");
 		if(rdf_ID.equals(rdfID) ) {
-			targetvalue = ssh.getElementsByTagName("cim:RegulatingControl.targetValue").item(0).getTextContent();
+			targetvalue = Double.parseDouble(ssh.getElementsByTagName("cim:RegulatingControl.targetValue").item(0).getTextContent());
 		}		
 	}
 

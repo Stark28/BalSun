@@ -165,7 +165,7 @@ public class Amain {
 		// Store the value to SQL database
 			
 			System.out.println("*** Synchronous Machine ***");
-			for (int i = 0; i < SynchronousList.size(); i = i + 8) {
+			for (int i = 0; i < SynchronousList.size(); i = i + 9) {
 				String SyncrdfID = (String) SynchronousList.get(i);
 				String SyncName = (String) SynchronousList.get(i+1);
 				double SyncRatedS = (double) SynchronousList.get(i+2);
@@ -174,7 +174,8 @@ public class Amain {
 				String SyncGenUnitID = (String) SynchronousList.get(i+5);
 				String SyncRegCtrID = (String) SynchronousList.get(i+6);
 				String SyncEqConID = (String) SynchronousList.get(i+7);
-				mySQL.SynchMachineTab(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID);
+				String SyncbasevoltID = (String) SynchronousList.get(i+8);
+				mySQL.SynchMachineTab(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID,SyncbasevoltID);
 				System.out.println("rdfID: " + SyncrdfID +"\n"+ "Name: " + SyncName +"\n"+
 						"rated S: " + SyncRatedS +"\n"+ "Active Power: " + SyncP +"\n"+ "Reactive Power: " + SyncQ
 						+"\n"+ "Generating Unit ID: " + SyncGenUnitID +"\n"+ "Regulating Control ID: " + SyncRegCtrID
@@ -190,7 +191,7 @@ public class Amain {
 			// Store the value to SQL database
 			
 						System.out.println("*** Regulating Control ***");
-						for (int i = 0; i < SynchronousList.size(); i = i + 3 ) {
+						for (int i = 0; i < RegulatingList.size(); i = i + 3 ) {
 							String RegrdfID = (String) RegulatingList.get(i);
 							String RegName = (String) RegulatingList.get(i+1);
 							double TargetValue = (double) RegulatingList.get(i+2);
@@ -224,13 +225,14 @@ public class Amain {
 			// Store the value to SQL database
 			
 			System.out.println("*** Energy Consumer ***");
-			for (int i = 0; i < EnergyList.size(); i = i + 5 ) {
+			for (int i = 0; i < EnergyList.size(); i = i + 6 ) {
 				String LoadrdfID = (String) EnergyList.get(i);
 				String LoadName = (String) EnergyList.get(i+1);
 				double LoadP = (double) EnergyList.get(i+2);
 				double LoadQ = (double) EnergyList.get(i+3);
 				String LoadEqConID = (String) EnergyList.get(i+4);
-				mySQL.EnergyConsumerTab(LoadrdfID, LoadName, LoadP, LoadQ, LoadEqConID);
+				String BasevoltID = (String) EnergyList.get(i+5);
+				mySQL.EnergyConsumerTab(LoadrdfID, LoadName, LoadP, LoadQ, LoadEqConID, BasevoltID);
 				System.out.println("rdfID: " + LoadrdfID +"\n"+ "Name: " + LoadName +"\n"+
 				"Active Power: " +LoadP +"\n"+ "Reactive Power: " + LoadQ +"\n"+
 				"Equipment Container ID: " +LoadEqConID);

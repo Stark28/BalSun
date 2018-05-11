@@ -231,9 +231,9 @@ public class DBSQL {
 		}
 	
 	public void SynchMachineTab(String rdfID, String Name, double RatedS, double P, double Q,
-			String GenUnit_rdfID, String RegControl_rdfID, String EquipmentContainer_rdfID){
+			String GenUnit_rdfID, String RegControl_rdfID, String EquipmentContainer_rdfID, String Basevoltage_rdfID){
 		try {
-			String query = "INSERT INTO SynchronousMachine VALUES(?,?,?,?,?,?,?,?)";
+			String query = "INSERT INTO SynchronousMachine VALUES(?,?,?,?,?,?,?,?,?)";
 			PreparedStatement preparedStmt = conn.prepareStatement(query);
 			preparedStmt.setString(1,rdfID);
 			preparedStmt.setString(2,Name);
@@ -243,6 +243,7 @@ public class DBSQL {
 			preparedStmt.setString(6,GenUnit_rdfID);
 			preparedStmt.setString(7,RegControl_rdfID);
 			preparedStmt.setString(8,EquipmentContainer_rdfID);
+			preparedStmt.setString(9,Basevoltage_rdfID);
 			preparedStmt.executeUpdate();
 		   }
 		catch(SQLException se){
@@ -281,15 +282,16 @@ public class DBSQL {
 		e.printStackTrace();}			
 		}
 	
-	public void EnergyConsumerTab(String rdfID, String Name, double P, double Q, String EquipmentContainer_rdfID){
+	public void EnergyConsumerTab(String rdfID, String Name, double P, double Q, String EquipmentContainer_rdfID, String Basevoltage_rdfID){
 		try {
-			String query = "INSERT INTO EnergyConsumer VALUES(?,?,?,?,?)";
+			String query = "INSERT INTO EnergyConsumer VALUES(?,?,?,?,?,?)";
 			PreparedStatement preparedStmt = conn.prepareStatement(query);
 			preparedStmt.setString(1,rdfID);
 			preparedStmt.setString(2,Name);
 			preparedStmt.setDouble(3,P);
 			preparedStmt.setDouble(4,Q);
 			preparedStmt.setString(5,EquipmentContainer_rdfID);
+			preparedStmt.setString(6,Basevoltage_rdfID);
 			preparedStmt.executeUpdate();
 		   }
 		catch(SQLException se){
