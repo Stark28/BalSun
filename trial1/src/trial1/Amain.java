@@ -94,12 +94,12 @@ public class Amain {
 			
 		// Store the value to SQL database
 			
-			System.out.println("*** Base Voltage ***");
+			//System.out.println("*** Base Voltage ***");
 			for(int i = 0; i < BaseVoltageList.size(); i = i + 2) {
 				String BaseVrdfID = (String) BaseVoltageList.get(i);
 				double BaseNom = (double) BaseVoltageList.get(i + 1);
 				mySQL.BaseVoltageTab(BaseVrdfID, BaseNom);
-				System.out.println("rdfID: " + BaseVrdfID +"\n"+ "Nominal Value: " + BaseNom);
+				//System.out.println("rdfID: " + BaseVrdfID +"\n"+ "Nominal Value: " + BaseNom);
 			}
 		
 		// Substation information
@@ -216,11 +216,28 @@ public class Amain {
 				System.out.println("Busbar " + a2[i][1]);
 				
 			}
- 
+ 	
+		//  initial the Y bus matrix
+			int [][] y;
+			y = new int [BusbarList.size()][BusbarList.size()];
+			for(int i = 0; i < BusbarList.size(); i ++) {
+				for(int j = 0; j < BusbarList.size(); j ++) {
+				y[i][j]=0;
+			}
+			}
 			
-		//  
 			
-	}
+		// print Y bus matrix
+			for(int i = 0; i < BusbarList.size(); i ++ ) {
+			int a = BusbarList.size();
+			System.out.print("[ " );
+			for(int j = 0; j < BusbarList.size(); j ++) {
+					System.out.print(y[i][j] + " ");
+			}
+			System.out.println("]");
+			
+	      }
+		}
 
 	catch(Exception e){
 		e.printStackTrace();
@@ -228,11 +245,5 @@ public class Amain {
 	
 	}
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> f255a371230f72e3a6c829682fd25107b20cebcf
 }
 
