@@ -165,7 +165,7 @@ public class Amain {
 		// Store the value to SQL database
 			
 			System.out.println("*** Synchronous Machine ***");
-			for (int i = 0; i < SynchronousList.size(); i = i + 8) {
+			for (int i = 0; i < SynchronousList.size(); i = i + 9) {
 				String SyncrdfID = (String) SynchronousList.get(i);
 				String SyncName = (String) SynchronousList.get(i+1);
 				double SyncRatedS = (double) SynchronousList.get(i+2);
@@ -174,11 +174,12 @@ public class Amain {
 				String SyncGenUnitID = (String) SynchronousList.get(i+5);
 				String SyncRegCtrID = (String) SynchronousList.get(i+6);
 				String SyncEqConID = (String) SynchronousList.get(i+7);
-				mySQL.SynchMachineTab(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID);
+				String BV_rdfID = (String) SynchronousList.get(i+7);
+				mySQL.SynchMachineTab(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID, BV_rdfID);
 				System.out.println("rdfID: " + SyncrdfID +"\n"+ "Name: " + SyncName +"\n"+
 						"rated S: " + SyncRatedS +"\n"+ "Active Power: " + SyncP +"\n"+ "Reactive Power: " + SyncQ
 						+"\n"+ "Generating Unit ID: " + SyncGenUnitID +"\n"+ "Regulating Control ID: " + SyncRegCtrID
-						+"\n"+ "Equipment Container ID: " + SyncEqConID);
+						+"\n"+ "Equipment Container ID: " + SyncEqConID +"\n"+ "Base Voltage_RDFID: " + BV_rdfID);
 				}
 			
 			
