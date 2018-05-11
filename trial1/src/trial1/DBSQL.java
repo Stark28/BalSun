@@ -231,7 +231,11 @@ public class DBSQL {
 		}
 	
 	public void SynchMachineTab(String rdfID, String Name, double RatedS, double P, double Q,
+<<<<<<< HEAD
 			String GenUnit_rdfID, String RegControl_rdfID, String EquipmentContainer_rdfID, String Basevoltage_rdfID){
+=======
+			String GenUnit_rdfID, String RegControl_rdfID, String EquipmentContainer_rdfID, String bv_rdfID){
+>>>>>>> 08a36b7199a9a5c90a3cc0321a0cab7931d6a31c
 		try {
 			String query = "INSERT INTO SynchronousMachine VALUES(?,?,?,?,?,?,?,?,?)";
 			PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -243,7 +247,12 @@ public class DBSQL {
 			preparedStmt.setString(6,GenUnit_rdfID);
 			preparedStmt.setString(7,RegControl_rdfID);
 			preparedStmt.setString(8,EquipmentContainer_rdfID);
+<<<<<<< HEAD
 			preparedStmt.setString(9,Basevoltage_rdfID);
+=======
+			preparedStmt.setString(8,bv_rdfID);
+		
+>>>>>>> 08a36b7199a9a5c90a3cc0321a0cab7931d6a31c
 			preparedStmt.executeUpdate();
 		   }
 		catch(SQLException se){

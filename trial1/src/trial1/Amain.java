@@ -174,12 +174,17 @@ public class Amain {
 				String SyncGenUnitID = (String) SynchronousList.get(i+5);
 				String SyncRegCtrID = (String) SynchronousList.get(i+6);
 				String SyncEqConID = (String) SynchronousList.get(i+7);
+<<<<<<< HEAD
 				String SyncbasevoltID = (String) SynchronousList.get(i+8);
 				mySQL.SynchMachineTab(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID,SyncbasevoltID);
+=======
+				String BV_rdfID = (String) SynchronousList.get(i+7);
+				mySQL.SynchMachineTab(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID, BV_rdfID);
+>>>>>>> 08a36b7199a9a5c90a3cc0321a0cab7931d6a31c
 				System.out.println("rdfID: " + SyncrdfID +"\n"+ "Name: " + SyncName +"\n"+
 						"rated S: " + SyncRatedS +"\n"+ "Active Power: " + SyncP +"\n"+ "Reactive Power: " + SyncQ
 						+"\n"+ "Generating Unit ID: " + SyncGenUnitID +"\n"+ "Regulating Control ID: " + SyncRegCtrID
-						+"\n"+ "Equipment Container ID: " + SyncEqConID);
+						+"\n"+ "Equipment Container ID: " + SyncEqConID +"\n"+ "Base Voltage_RDFID: " + BV_rdfID);
 				}
 			
 			
