@@ -274,13 +274,14 @@ public class Amain {
 			
 
 			System.out.println("*** Breaker ***");
-			for (int i = 0; i < BreakerList.size(); i = i + 4 ) {
+			for (int i = 0; i < BreakerList.size(); i = i + 5 ) {
 
 				String BRrdfID = (String) BreakerList.get(i);
 				String BRName = (String) BreakerList.get(i+1);
 				boolean BRState = (boolean) BreakerList.get(i+2);
 				String BREqConID = (String) BreakerList.get (i+3);
-				mySQL.BreakerTab(BRrdfID, BRName, BRState, BREqConID);
+				String BREbaserdfID = (String) BreakerList.get (i+4);
+				mySQL.BreakerTab(BRrdfID, BRName, BRState, BREqConID, BREbaserdfID);
 				System.out.println("rdfID: " + BRrdfID +"\n"+ "Name: " + BRName +"\n"+
 				"State: " +BRState +"\n"+ "Equipment Container ID: " +BREqConID);
 				}
