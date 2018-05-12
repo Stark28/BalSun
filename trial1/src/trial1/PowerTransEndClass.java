@@ -15,8 +15,8 @@ public static ArrayList powerendfn(Document doc1, ArrayList PowerTransEndList)
 	System.out.println("***** Power Transformer End ***** ");
 	String rdfID = null;
 	String name; 
-	String trans_r;
-	String trans_x;
+	double trans_r;
+	double trans_x;
 	String transrdfID;
 	String basevoltrdfID;
 	
@@ -29,8 +29,8 @@ public static ArrayList powerendfn(Document doc1, ArrayList PowerTransEndList)
 	Element element = (Element) power;
 	rdfID = element.getAttribute("rdf:ID");
 	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
-	trans_r = element.getElementsByTagName("cim:PowerTransformerEnd.r").item(0).getTextContent();
-	trans_x = element.getElementsByTagName("cim:PowerTransformerEnd.x").item(0).getTextContent();
+	trans_r = Double.parseDouble(element.getElementsByTagName("cim:PowerTransformerEnd.r").item(0).getTextContent());
+	trans_x = Double.parseDouble(element.getElementsByTagName("cim:PowerTransformerEnd.x").item(0).getTextContent());
 	transrdfID = element.getElementsByTagName("cim:PowerTransformerEnd.PowerTransformer").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
 	basevoltrdfID = element.getElementsByTagName("cim:TransformerEnd.BaseVoltage").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
 	
