@@ -273,12 +273,12 @@ public class Amain {
 			// Store the value to SQL database
 			
 
-			System.out.println("*** Breaker ***");
-			for (int i = 0; i < BreakerList.size(); i = i + 5 ) {
+
+
 
 		/*	System.out.println("*** Breaker ***");
 			for (int i = 0; i < BreakerList.size(); i = i + 4 ) {
->>>>>>> e72ec73fc5ac22b2d379b3be4b683b094256ae7e
+
 				String BRrdfID = (String) BreakerList.get(i);
 				String BRName = (String) BreakerList.get(i+1);
 				boolean BRState = (boolean) BreakerList.get(i+2);
@@ -541,8 +541,9 @@ public class Amain {
            
            // For AC line
 			System.out.println("AC line");
-			double[] aclinebus = new double[ACLinebaseList.size() * 2];
-			 int x1 = 0;
+			//double[] aclinebus = new double[ACLinebaseList.size() * 2];
+			ArrayList aclinebus = new ArrayList<String>(); 
+			int x1 = 0;
 			for(int i = 0; i < TerminalconductingList.size(); i ++) { 
 				
 				if(t1[i][2] == 3) {// if the terminal connect to an ac line
@@ -555,6 +556,7 @@ public class Amain {
 						 x1 = t1[i][6];// x is the number of busbar
            			  System.out.print("Hello");
            			  System.out.println(x1);
+           			  aclinebus.add(x1);
 						
 					}else {
                      for(int j = 0; j < TerminalconductingList.size(); j ++) {
