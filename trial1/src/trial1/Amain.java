@@ -230,19 +230,19 @@ public class Amain {
 
 			// Store the value to SQL database
 			
-		//	System.out.println("*** Energy Consumer ***");
-		//	for (int i = 0; i < EnergyList.size(); i = i + 6 ) {
-		//		String LoadrdfID = (String) EnergyList.get(i);
-		//		String LoadName = (String) EnergyList.get(i+1);
-		//		double LoadP = (double) EnergyList.get(i+2);
-		//		double LoadQ = (double) EnergyList.get(i+3);
-		//		String LoadEqConID = (String) EnergyList.get(i+4);
-		//		String BasevoltID = (String) EnergyList.get(i+5);
-		//		mySQL.EnergyConsumerTab(LoadrdfID, LoadName, LoadP, LoadQ, LoadEqConID, BasevoltID);
-		//		System.out.println("rdfID: " + LoadrdfID +"\n"+ "Name: " + LoadName +"\n"+
-		//		"Active Power: " +LoadP +"\n"+ "Reactive Power: " + LoadQ +"\n"+
-		//		"Equipment Container ID: " +LoadEqConID);
-		//		}
+			System.out.println("*** Energy Consumer ***");
+			for (int i = 0; i < EnergyList.size(); i = i + 6 ) {
+				String LoadrdfID = (String) EnergyList.get(i);
+				String LoadName = (String) EnergyList.get(i+1);
+				double LoadP = (double) EnergyList.get(i+2);
+				double LoadQ = (double) EnergyList.get(i+3);
+				String LoadEqConID = (String) EnergyList.get(i+4);
+				String BasevoltID = (String) EnergyList.get(i+5);
+				mySQL.EnergyConsumerTab(LoadrdfID, LoadName, LoadP, LoadQ, LoadEqConID, BasevoltID);
+				System.out.println("rdfID: " + LoadrdfID +"\n"+ "Name: " + LoadName +"\n"+
+				"Active Power: " +LoadP +"\n"+ "Reactive Power: " + LoadQ +"\n"+
+				"Equipment Container ID: " +LoadEqConID);
+				}
 			
 		// Power Transformer Winding information check done
 		    PowerTransEndClass powerend = new PowerTransEndClass();
@@ -251,19 +251,19 @@ public class Amain {
 			
 			// Store the value to SQL database
 			
-		//	System.out.println("*** Power Transformer End (Winding) ***");
-		//	for (int i = 0; i < PowerTransEndList.size(); i = i + 6 )  {
-		//		String TrWindrdfID = (String) PowerTransEndList.get(i);
-		//		String TrWindName = (String) PowerTransEndList.get(i+1);
-		//		double TrWindRvalue = (double) PowerTransEndList.get(i+2);
-		//		double TrWindXvalue = (double) PowerTransEndList.get(i+3);
-		//		String PowTransrdfID = (String) PowerTransEndList.get(i+4);
-		//		String baseVoltrdfID = (String) PowerTransEndList.get(i+5);
-		//		mySQL.TransformerWindingTab(TrWindrdfID, TrWindName, TrWindRvalue, TrWindXvalue, PowTransrdfID, baseVoltrdfID);
-		//		System.out.println("rdfID: " + TrWindrdfID +"\n"+ "Name: " + TrWindName +"\n"+ "Resistance Value: "
-		//		+ TrWindRvalue +"\n"+ "Reactance Value: " + TrWindXvalue +"\n"
-		//		+ "Transformer_ID: " + PowTransrdfID +"\n"+ "BaseVoltage_ID: " + baseVoltrdfID);
-		//		}
+			System.out.println("*** Power Transformer End (Winding) ***");
+			for (int i = 0; i < PowerTransEndList.size(); i = i + 6 )  {
+				String TrWindrdfID = (String) PowerTransEndList.get(i);
+				String TrWindName = (String) PowerTransEndList.get(i+1);
+				double TrWindRvalue = (double) PowerTransEndList.get(i+2);
+				double TrWindXvalue = (double) PowerTransEndList.get(i+3);
+				String PowTransrdfID = (String) PowerTransEndList.get(i+4);
+				String baseVoltrdfID = (String) PowerTransEndList.get(i+5);
+				mySQL.TransformerWindingTab(TrWindrdfID, TrWindName, TrWindRvalue, TrWindXvalue, PowTransrdfID, baseVoltrdfID);
+				System.out.println("rdfID: " + TrWindrdfID +"\n"+ "Name: " + TrWindName +"\n"+ "Resistance Value: "
+				+ TrWindRvalue +"\n"+ "Reactance Value: " + TrWindXvalue +"\n"
+				+ "Transformer_ID: " + PowTransrdfID +"\n"+ "BaseVoltage_ID: " + baseVoltrdfID);
+				}
 			
 		// Breaker information check done
 		    BreakerClass breaker = new BreakerClass();
@@ -273,10 +273,7 @@ public class Amain {
 			// Store the value to SQL database
 			
 
-
-
-
-		/*	System.out.println("*** Breaker ***");
+			System.out.println("*** Breaker ***");
 			for (int i = 0; i < BreakerList.size(); i = i + 4 ) {
 
 				String BRrdfID = (String) BreakerList.get(i);
@@ -287,14 +284,14 @@ public class Amain {
 				System.out.println("rdfID: " + BRrdfID +"\n"+ "Name: " + BRName +"\n"+
 				"State: " +BRState +"\n"+ "Equipment Container ID: " +BREqConID);
 				}
-			*/
+			
 		// Tap Changer information
 		    TapClass tap = new TapClass();
 			tap.tapfn(doc1,doc2, TapList);
 			System.out.println("List of Tap Changer : " + TapList);
 			
 			// Store the value to SQL database
-		/*	
+			
 			System.out.println("*** Ratio Tap Changer ***");
 			for (int i = 0; i < TapList.size(); i = i + 3) {
 				String TaprdfID = (String) TapList.get(i);
@@ -305,7 +302,7 @@ public class Amain {
 				"Target Value: " +TapStep);
 				}
 			// SQL DATABASE DONE*************************************************************
-			*/
+			
 			
 		// Terminal information
 		    TerminalconductingClass ter = new TerminalconductingClass();
