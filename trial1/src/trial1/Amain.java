@@ -181,11 +181,11 @@ public class Amain {
 				String SyncRegCtrID = (String) SynchronousList.get(i+6);
 				String SyncEqConID = (String) SynchronousList.get(i+7);
 				String SyncbasevoltID = (String) SynchronousList.get(i+8);
-				mySQL.SynchMachineTab(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID,SyncbasevoltID);
+				mySQL.SynchMachineTab(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID, SyncbasevoltID);
 				System.out.println("rdfID: " + SyncrdfID +"\n"+ "Name: " + SyncName +"\n"+
 						"rated S: " + SyncRatedS +"\n"+ "Active Power: " + SyncP +"\n"+ "Reactive Power: " + SyncQ
 						+"\n"+ "Generating Unit ID: " + SyncGenUnitID +"\n"+ "Regulating Control ID: " + SyncRegCtrID
-						+"\n"+ "Equipment Container ID: " + SyncEqConID);
+						+"\n"+ "Equipment Container ID: " + SyncEqConID +"\n"+ "Synchoronous Base RDF ID: " + SyncbasevoltID );
 				}
 			
 			
@@ -565,6 +565,7 @@ public class Amain {
                     			  x1 = d; // x is the number of busbar
                     			  System.out.print("Hello");
                     			  System.out.println(x1);
+                    			  aclinebus.add(x1);
                     		 }
                     	 }
                      }
@@ -576,7 +577,8 @@ public class Amain {
 			
 			// For transformer
 			System.out.println("Transformer");
-			double[] transformerbus = new double[PowerTransEndList.size() / 3];
+			ArrayList transformerbus = new ArrayList<String>(); 
+			//double[] transformerbus = new double[PowerTransEndList.size() / 3];
 			 int x2 = 0;
 			for(int i = 0; i < TerminalconductingList.size(); i ++) { 
 				
@@ -589,6 +591,7 @@ public class Amain {
 					if(t1[i][6] != BusbarList.size() / 2) {// check whether the terminal connect to busbar
 						 x2 = t1[i][6];// x is the number of busbar
 						 System.out.println("Hello" + x2);
+						 transformerbus.add(x2);
 				
 					}else {
                     for(int j = 0; j < TerminalconductingList.size(); j ++) {
@@ -600,6 +603,7 @@ public class Amain {
                    			  x2 = d; // x is the number of busbar
                    			  System.out.print("Hello");
                    			  System.out.println(x2);
+                   			transformerbus.add(x2);
                    		 }
                    	 }
                     }
@@ -612,7 +616,8 @@ public class Amain {
 			
 			// For Shunt capacitor
 			System.out.println("Shunt");
-			double[] shuntbus = new double[LinearShuntCompensatorrdfIDList.size()];
+			ArrayList shuntbus = new ArrayList<String>(); 
+			//double[] shuntbus = new double[LinearShuntCompensatorrdfIDList.size()];
 			 int x3 = 0;
 			for(int i = 0; i < TerminalconductingList.size(); i ++) { 
 				
@@ -625,6 +630,7 @@ public class Amain {
 					if(t1[i][6] != BusbarList.size() / 2) {// check whether the terminal connect to busbar
 						 x3 = t1[i][6];// x is the number of busbar
 						 System.out.println("Hello" + x3);
+						 shuntbus.add(x3);
 				
 					}else {
                    for(int j = 0; j < TerminalconductingList.size(); j ++) {
@@ -636,6 +642,7 @@ public class Amain {
                   			  x3 = d; // x is the number of busbar
                   			  System.out.print("Hello");
                   			  System.out.println(x3);
+                  			shuntbus.add(x3);
                   		 }
                   	 }
                    }
@@ -644,7 +651,9 @@ public class Amain {
 					}
 				}
 			}
-	
+	   System.out.println("list of ac line buses numbers " + aclinebus);
+	   System.out.println("list of transformer buses numbers " + transformerbus);
+	   System.out.println("list of shunt buses numbers " + shuntbus);
 			
 			
 		/*	//System.out.println(a1);
