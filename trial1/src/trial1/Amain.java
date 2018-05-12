@@ -132,16 +132,16 @@ public class Amain {
 			
 			// Store the value to SQL database
 			
-		//	System.out.println("*** Voltage Level ***");
-		//	for (int i = 0; i < VoltLevelList.size(); i = i + 4 ) {
-		//		String VoltrdfID = (String) VoltLevelList.get(i);
-		//		String VoltName = (String) VoltLevelList.get(i+1);
-		//		String subrdfID = (String) VoltLevelList.get(i+2);
-		//		String baseVoltrdfID = (String) VoltLevelList.get(i+3);
-		//		mySQL.VoltageLevelTab(VoltrdfID, VoltName, subrdfID, baseVoltrdfID);
-		//		System.out.println("rdfID: " + VoltrdfID +"\n"+ "Name: " + VoltName +"\n"+ "substation_ID: "
-		//		+ subrdfID +"\n"+ "BaseVoltage_ID: " + baseVoltrdfID);
-		//		}
+			System.out.println("*** Voltage Level ***");
+			for (int i = 0; i < VoltLevelList.size(); i = i + 4 ) {
+				String VoltrdfID = (String) VoltLevelList.get(i);
+				String VoltName = (String) VoltLevelList.get(i+1);
+				String subrdfID = (String) VoltLevelList.get(i+2);
+				String baseVoltrdfID = (String) VoltLevelList.get(i+3);
+		     	mySQL.VoltageLevelTab(VoltrdfID, VoltName, subrdfID, baseVoltrdfID);
+				System.out.println("rdfID: " + VoltrdfID +"\n"+ "Name: " + VoltName +"\n"+ "substation_ID: "
+				+ subrdfID +"\n"+ "BaseVoltage_ID: " + baseVoltrdfID);
+				}
 			
 		// Generating Unit information
 			GeneratingClass gen = new GeneratingClass();
@@ -273,7 +273,12 @@ public class Amain {
 			// Store the value to SQL database
 			
 
+<<<<<<< HEAD
 
+=======
+			System.out.println("*** Breaker ***");
+			for (int i = 0; i < BreakerList.size(); i = i + 5 ) {
+>>>>>>> 3ba864b7b2296a5cce9d156c061c8d8e8898be3b
 
 		/*	System.out.println("*** Breaker ***");
 			for (int i = 0; i < BreakerList.size(); i = i + 4 ) {
