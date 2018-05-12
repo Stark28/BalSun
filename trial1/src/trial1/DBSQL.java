@@ -247,12 +247,7 @@ public class DBSQL {
 			preparedStmt.setString(6,GenUnit_rdfID);
 			preparedStmt.setString(7,RegControl_rdfID);
 			preparedStmt.setString(8,EquipmentContainer_rdfID);
-
 			preparedStmt.setString(9,Basevoltage_rdfID);
-
-
-		
-
 			preparedStmt.executeUpdate();
 		   }
 		catch(SQLException se){

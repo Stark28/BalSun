@@ -150,18 +150,18 @@ public class Amain {
 			
 		// Store the value to SQL database
 			
-		//	System.out.println("*** Generating Unit ***");
-		//	for (int i = 0; i < GeneratingList.size(); i = i + 5 ) {
-		//		String GenrdfID = (String) GeneratingList.get(i);
-		//		String GenName = (String) GeneratingList.get(i+1);
-		//		double GenMaxP = (double) GeneratingList.get(i+2);
-		//		double GenMinP = (double) GeneratingList.get(i+3);
-		//		String GenEqConID = (String) GeneratingList.get(i+4);
-		//		mySQL.GeneratingUnitTab(GenrdfID, GenName, GenMaxP, GenMinP, GenEqConID);
-		//		System.out.println("rdfID: " + GenrdfID +"\n"+ "Name: " + GenName +"\n"+
-		//		"Maximum Operating Power: " + GenMaxP +"\n"+ "Minimum Operating Power: " + GenMinP +"\n"
-		//		+ "Equipment Container ID: " + GenEqConID);
-		//		}
+			System.out.println("*** Generating Unit ***");
+			for (int i = 0; i < GeneratingList.size(); i = i + 5 ) {
+				String GenrdfID = (String) GeneratingList.get(i);
+				String GenName = (String) GeneratingList.get(i+1);
+				double GenMaxP = (double) GeneratingList.get(i+2);
+				double GenMinP = (double) GeneratingList.get(i+3);
+				String GenEqConID = (String) GeneratingList.get(i+4);
+				mySQL.GeneratingUnitTab(GenrdfID, GenName, GenMaxP, GenMinP, GenEqConID);
+				System.out.println("rdfID: " + GenrdfID +"\n"+ "Name: " + GenName +"\n"+
+				"Maximum Operating Power: " + GenMaxP +"\n"+ "Minimum Operating Power: " + GenMinP +"\n"
+		    	+ "Equipment Container ID: " + GenEqConID);
+				}
 			
 		// Synchronous Machine information
 			SynMachClass syn = new SynMachClass();
@@ -170,23 +170,23 @@ public class Amain {
 			
 		// Store the value to SQL database
 			
-		//	System.out.println("*** Synchronous Machine ***");
-		//	for (int i = 0; i < SynchronousList.size(); i = i + 9) {
-		//		String SyncrdfID = (String) SynchronousList.get(i);
-		//		String SyncName = (String) SynchronousList.get(i+1);
-		//		double SyncRatedS = (double) SynchronousList.get(i+2);
-		//		double SyncP = (double) SynchronousList.get(i+3);
-		//		double SyncQ = (double) SynchronousList.get(i+4);
-		//		String SyncGenUnitID = (String) SynchronousList.get(i+5);
-		//		String SyncRegCtrID = (String) SynchronousList.get(i+6);
-		//		String SyncEqConID = (String) SynchronousList.get(i+7);
-		//		String SyncbasevoltID = (String) SynchronousList.get(i+8);
-		//		mySQL.SynchMachineTab(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID,SyncbasevoltID);
-		//		System.out.println("rdfID: " + SyncrdfID +"\n"+ "Name: " + SyncName +"\n"+
-		//				"rated S: " + SyncRatedS +"\n"+ "Active Power: " + SyncP +"\n"+ "Reactive Power: " + SyncQ
-		//				+"\n"+ "Generating Unit ID: " + SyncGenUnitID +"\n"+ "Regulating Control ID: " + SyncRegCtrID
-		//				+"\n"+ "Equipment Container ID: " + SyncEqConID);
-		//		}
+			System.out.println("*** Synchronous Machine ***");
+			for (int i = 0; i < SynchronousList.size(); i = i + 9) {
+				String SyncrdfID = (String) SynchronousList.get(i);
+				String SyncName = (String) SynchronousList.get(i+1);
+				double SyncRatedS = (double) SynchronousList.get(i+2);
+				double SyncP = (double) SynchronousList.get(i+3);
+				double SyncQ = (double) SynchronousList.get(i+4);
+				String SyncGenUnitID = (String) SynchronousList.get(i+5);
+				String SyncRegCtrID = (String) SynchronousList.get(i+6);
+				String SyncEqConID = (String) SynchronousList.get(i+7);
+				String SyncbasevoltID = (String) SynchronousList.get(i+8);
+				mySQL.SynchMachineTab(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID,SyncbasevoltID);
+				System.out.println("rdfID: " + SyncrdfID +"\n"+ "Name: " + SyncName +"\n"+
+						"rated S: " + SyncRatedS +"\n"+ "Active Power: " + SyncP +"\n"+ "Reactive Power: " + SyncQ
+						+"\n"+ "Generating Unit ID: " + SyncGenUnitID +"\n"+ "Regulating Control ID: " + SyncRegCtrID
+						+"\n"+ "Equipment Container ID: " + SyncEqConID);
+				}
 			
 			
 		// Regulating Control information check done
@@ -196,15 +196,15 @@ public class Amain {
 			
 			// Store the value to SQL database
 			
-		//				System.out.println("*** Regulating Control ***");
-		//				for (int i = 0; i < RegulatingList.size(); i = i + 3 ) {
-		//					String RegrdfID = (String) RegulatingList.get(i);
-		//					String RegName = (String) RegulatingList.get(i+1);
-		//					double TargetValue = (double) RegulatingList.get(i+2);
-		//					mySQL.RegControlTab(RegrdfID, RegName, TargetValue);
-		//					System.out.println("rdfID: " + RegrdfID +"\n"+ "Name: " + RegName +"\n"+
-		//					"Target Value: " +TargetValue);
-		//					}
+						System.out.println("*** Regulating Control ***");
+						for (int i = 0; i < RegulatingList.size(); i = i + 3 ) {
+							String RegrdfID = (String) RegulatingList.get(i);
+							String RegName = (String) RegulatingList.get(i+1);
+							double TargetValue = (double) RegulatingList.get(i+2);
+							mySQL.RegControlTab(RegrdfID, RegName, TargetValue);
+							System.out.println("rdfID: " + RegrdfID +"\n"+ "Name: " + RegName +"\n"+
+							"Target Value: " +TargetValue);
+							}
 			
 		// Power Transformer information
 		    PowerTransClass power = new PowerTransClass();
@@ -213,15 +213,15 @@ public class Amain {
 		
 		// Store the value to SQL database
 			
-		//	System.out.println("*** Power Transformer ***");
-		//	for (int i = 0; i < PowerTransList.size(); i = i + 3 ) {
-		//		String TransrdfID = (String) PowerTransList.get(i);
-		//		String TransName = (String) PowerTransList.get(i+1);
-		//		String TransEqConID = (String) PowerTransList.get(i+2);
-		//		mySQL.PowerTransformerTab(TransrdfID, TransName, TransEqConID);
-		//		System.out.println("rdfID: " + TransrdfID +"\n"+ "Name: " + TransName +"\n"+
-		//		"Equipment Container ID: " +TransEqConID);
-		//		}
+			System.out.println("*** Power Transformer ***");
+			for (int i = 0; i < PowerTransList.size(); i = i + 3 ) {
+				String TransrdfID = (String) PowerTransList.get(i);
+				String TransName = (String) PowerTransList.get(i+1);
+				String TransEqConID = (String) PowerTransList.get(i+2);
+				mySQL.PowerTransformerTab(TransrdfID, TransName, TransEqConID);
+				System.out.println("rdfID: " + TransrdfID +"\n"+ "Name: " + TransName +"\n"+
+				"Equipment Container ID: " +TransEqConID);
+				}
 			
 		 //Energy Consumer information
 		    EnergyClass energy = new EnergyClass();
