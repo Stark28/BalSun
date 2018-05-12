@@ -16,7 +16,7 @@ public static ArrayList tapfn(Document doc1, Document doc2, ArrayList TapList)
 	System.out.println("***** Tap Changer ***** ");
 	String rdfID = null;
 	String name; 
-	String step = null;
+	double step = 0;
 	
 	for (int i = 0; i<taplist.getLength(); i++) 
 	{
@@ -32,7 +32,7 @@ public static ArrayList tapfn(Document doc1, Document doc2, ArrayList TapList)
 		Element ssh=(Element) tap2list.item(j);
 		String rdf_ID = ssh.getAttribute("rdf:about").replaceAll("#", "");
 		if(rdf_ID.equals(rdfID) ) {
-			step = ssh.getElementsByTagName("cim:TapChanger.step").item(0).getTextContent();
+			step = Double.parseDouble(ssh.getElementsByTagName("cim:TapChanger.step").item(0).getTextContent());
 		}		
 	}
 

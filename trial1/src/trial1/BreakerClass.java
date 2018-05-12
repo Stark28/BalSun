@@ -16,7 +16,7 @@ public static ArrayList breakerfn(Document doc1, ArrayList BreakerList)
 	System.out.println("***** Breaker ***** ");
 	String rdfID = null;
 	String name; 
-	String state;
+	boolean state;
 	String equipmentContainer;
 	String BaseVoltID = null;
 
@@ -29,7 +29,7 @@ public static ArrayList breakerfn(Document doc1, ArrayList BreakerList)
 	Element element = (Element) breaker1;
 	rdfID = element.getAttribute("rdf:ID");
 	name = element.getElementsByTagName("cim:IdentifiedObject.name").item(0).getTextContent();
-	state = element.getElementsByTagName("cim:Switch.normalOpen").item(0).getTextContent();
+	state = Boolean.valueOf(element.getElementsByTagName("cim:Switch.normalOpen").item(0).getTextContent());
 	equipmentContainer = element.getElementsByTagName("cim:Equipment.EquipmentContainer").item(0).getAttributes().item(0).getTextContent().replaceAll("#","");
 	
 	for(int j=0; j<breakerbaselist.getLength(); j++) {
