@@ -98,7 +98,7 @@ public class DBSQL {
 					+ "GenUnit_rdfID VARCHAR(40), RegControl_rdfID VARCHAR(40),"
 					+ "EquipmentContainer_rdfID VARCHAR(40), BaseVoltage_rdfID VARCHAR(40), PRIMARY KEY (rdfID),"
 					+ "FOREIGN KEY (GenUnit_rdfID) REFERENCES GeneratingUnit(rdfID),"
-					+ "FOREIGN KEY (EquipmentContainer_rdfID) REFERENCES VoltageLevel(rdfID))";
+					+ "FOREIGN KEY (EquipmentContainer_rdfID) REFERENCES VoltageLevel(rdfID)),FOREIGN KEY (BaseVoltage_rdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql) ; // execute query
 			System.out.println("Created SynchronousMachine table in MicroGrid database successfully...");
 			
@@ -121,7 +121,7 @@ public class DBSQL {
 			sql = "CREATE TABLE IF NOT EXISTS EnergyConsumer"
 					+ "(rdfID VARCHAR(40) NOT NULL, Name VARCHAR(40), P DOUBLE, Q DOUBLE,"
 					+ "EquipmentContainer_rdfID VARCHAR(40), BaseVoltage_rdfID VARCHAR(40), PRIMARY KEY (rdfID),"
-					+ "FOREIGN KEY (EquipmentContainer_rdfID) REFERENCES VoltageLevel(rdfID))";
+					+ "FOREIGN KEY (EquipmentContainer_rdfID) REFERENCES VoltageLevel(rdfID)), FOREIGN KEY (BaseVoltage_rdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql) ; // execute query
 			System.out.println("Created EnergyConsumer table in MicroGrid database successfully...");
 			
