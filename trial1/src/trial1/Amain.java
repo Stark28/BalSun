@@ -272,7 +272,7 @@ public class Amain {
 			// Store the value to SQL database
 			
 			System.out.println("*** Breaker ***");
-			for (int i = 0; i < BreakerList.size(); i = i + 4 ) {
+			for (int i = 0; i < BreakerList.size(); i = i + 5 ) {
 				String BRrdfID = (String) BreakerList.get(i);
 				String BRName = (String) BreakerList.get(i+1);
 				boolean BRState = (boolean) BreakerList.get(i+2);
