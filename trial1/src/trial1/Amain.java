@@ -442,10 +442,23 @@ public class Amain {
 			ybus = new Complex [BusbarList.size()][BusbarList.size()];
 			for(int i = 0; i < BusbarList.size(); i = i + 2) {
 				for(int j = 0; j < BusbarList.size(); j = j + 2) {
-				ybus[i][j]= zero ;
+				ybus[i][j]= zero;
 			}
 			}
 			
+			
+			// print Y bus matrix
+			for(int i = 0; i < BusbarList.size(); i = i + 2 ) {
+			int a = BusbarList.size();
+			System.out.print("[ " );
+			for(int j = 0; j < BusbarList.size(); j = j + 2) {
+					System.out.print(ybus[i][j].StringRep() + " ");
+			}
+			System.out.println("]");
+			
+	      }
+		
+		
 			
 		/////////////////////////////  traversal of the elements of the circuit ////////////////////////////////////
 			
@@ -631,10 +644,14 @@ public class Amain {
 				}
 			}
 			
+			
+			
 			// calculate numbers for ac lines
 			for(int i = 0; i < aclinebus.size(); i = i + 2) {
+				
 				int c = (int) aclinebus.get(i);
 				int d = (int) aclinebus.get(i + 1);
+				
 				double l = (double) ACLinerxbglList.get(i + 4);
 				double r = (double) ACLinerxbglList.get(i);
 				double x = (double) ACLinerxbglList.get(i + 1);
@@ -644,23 +661,37 @@ public class Amain {
 				Complex Z = new Complex(l*r, l*x);
 				Complex Y = Z.reciprocal();
 				
-				Complex Y1 =new Complex(l*g/2 , l*b/2);
-				
-				
-				
+				Complex Ysh =new Complex(l*g/2 , l*b/2);	
+						
 				for(int j = 0; j < BaseVoltageList.size(); j = j + 2) {
 					for(int k = 0; k < ACLinebaseList.size(); k++) {
 						if(BaseVoltageList.get(j).equals(ACLinebaseList.get(k))) {
 							double v = (double) BaseVoltageList.get(j + 1);
-							Complex Ypu = Y.multi((Math.pow(v, 2)/Sbase));
-							Complex Y1pu = Y1.multi((Math.pow(v, 2)/Sbase));
+							Complex Ypu = Y.multi((v * v)/Sbase);
+							Complex Yshpu = Ysh.multi((v * v)/Sbase);
 							
+							for(int m = 0; m < BusbarList.size() / 2; m ++) {
+								if(m == c) {
+									Complex Ytotalpu = Ypu.plus(Yshpu);
+									ybus[m][m] = Ytotalpu.plus(ybus[m][m]);
+									for(int n = 0; n < BusbarList.size() / 2; n ++) {
+										if(n == d) {
+											//Complex Ytotal2pu = Ypu.plus(Yshpu);
+											System.out.println(n);
+											System.out.println(d);
+											//ybus[d][d] = Ytotalpu.plus(ybus[d][d]);
+											Complex minus = new Complex(-1.0, 0.0);
+											Complex minusY = Ypu.times(minus);
+											//ybus[m][n]=minusY.plus(ybus[m][n]);
+											//ybus[n][m]=minusY.plus(ybus[n][m]);
+										}
+									}
+								}
+							}
+									
 						}
 					}
-				}
-				
-				
-				
+				}		
 			}
 			
 			
