@@ -137,12 +137,11 @@ public class DBSQL {
 			// Create Breaker table with corresponding attributes
 						sql = "CREATE TABLE IF NOT EXISTS Breaker"
 								+ "(rdfID VARCHAR(40) NOT NULL, Name VARCHAR(40), State BOOLEAN,"
-								+ "EquipmentContainer_rdfID VARCHAR(40), BaseVoltage_rdfID VARCHAR(40)  PRIMARY KEY (rdfID),"
-								+ ")";
+								+ "EquipmentContainer_rdfID VARCHAR(40), BaseVoltage_rdfID VARCHAR(40)  PRIMARY KEY (rdfID))";
+								
 
 						stmt.executeUpdate(sql) ; // execute query
 						System.out.println("Created Breaker table in MicroGrid database successfully...");
-
 
 			
 			// Create Ratio Tap Changer table with corresponding attributes

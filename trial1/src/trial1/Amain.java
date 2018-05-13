@@ -9,6 +9,8 @@ import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+import Project1Pack.Complex;
+
 import java.io.*;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -256,7 +258,7 @@ public class Amain {
 			System.out.println("List of Power Transformer End rxbg: " + PowerTransEndrxbgList);
 			
 			double [][] transrxbg;
-			transrxbg = new double[ PowerTransEndrxbgList.size() / 4][5] ;
+			transrxbg = new double[ PowerTransEndrxbgList.size() / 4][5];
 			for(int i = 0; i < PowerTransEndrxbgList.size(); i = i + 4) {
 				transrxbg[i / 4][0] = i / 4;
 				transrxbg[i / 4][1] = (double) PowerTransEndrxbgList.get(i);
@@ -269,7 +271,23 @@ public class Amain {
 				System.out.println("No. " + transrxbg[i][0] + " r " + transrxbg[i][1] + " x " + transrxbg[i][2] + " b " + transrxbg[i][3] + " g " + transrxbg[i][4]);
 			}
 			
+			double [][] transrxbgnew;
+			transrxbgnew = new double[ PowerTransList.size() / 3][5];
+			for(int i = 0; i < PowerTransList.size(); i = i + 3 ) {
+				for(int j = 0; j < PowerTransEndList.size(); j = j + 6) {
+					if(PowerTransList.get(i).equals(PowerTransEndList.get(j + 4))) {
+						transrxbgnew[i / 3][0] = i / 3;
+						if(transrxbg[j / 6][1] != 0) {
+							transrxbgnew[i / 3][1] = transrxbg[j / 6][1];
+							transrxbgnew[i / 3][2] = transrxbg[j / 6][2];
+							transrxbgnew[i / 3][3] = transrxbg[j / 6][3];
+							transrxbgnew[i / 3][4] = transrxbg[j / 6][4];
+						}
+					}
+				}
+			}
 			
+
 			
 			/*
 			System.out.println("Test");
@@ -417,12 +435,14 @@ public class Amain {
 				
 			}
  	
+			
 		//  initial the Y bus matrix
-			int [][] y;
-			y = new int [BusbarList.size()][BusbarList.size()];
+			Complex zero = new Complex(0,0);
+			Complex [][] y;
+			y = new Complex [BusbarList.size()][BusbarList.size()];
 			for(int i = 0; i < BusbarList.size(); i = i + 2) {
 				for(int j = 0; j < BusbarList.size(); j = j + 2) {
-				y[i][j]=0;
+				y[i][j]= zero ;
 			}
 			}
 			
@@ -605,11 +625,16 @@ public class Amain {
                     		 }
                     	 }
                      }
-					
-
 					}
 				}
 			}
+			
+			// calculate numbers for ac lines
+			for(int i = 0; i < aclinebus.size(); i = i + 2) {
+				double a = (double) aclinebus.get(i);
+				double a = (double) aclinebus.get(i + 1);
+			}
+			
 			
 			// For transformer
 			System.out.println("Transformer");
@@ -643,18 +668,11 @@ public class Amain {
                    		 }
                    	 }
                     }
-					
-
 					}
 				}
 			}
 	
-			// check the transformer end and transformer
-			for(int i = 0; i < PowerTransList.size() / 3; i ++) {
-				//if() {
-					
-				//}
-			}
+
 			
 			// For Shunt capacitor
 			System.out.println("Shunt");
@@ -697,7 +715,11 @@ public class Amain {
 	   System.out.println("list of ac line buses numbers " + aclinebus);
 	   System.out.println("list of transformer buses numbers " + transformerbus);
 	   System.out.println("list of shunt buses numbers " + shuntbus);
-			
+		
+		System.out.println("Trans RXBG new:");
+		for(int i = 0; i < PowerTransList.size() / 3; i++) {
+			System.out.println("No. " + transrxbgnew[i][0] + " r " + transrxbgnew[i][1] + " x " + transrxbgnew[i][2] + " b " + transrxbgnew[i][3] + " g " + transrxbgnew[i][4]);
+		}
 	   
 			
 		/*	//System.out.println(a1);
@@ -727,7 +749,7 @@ public class Amain {
 			int a = BusbarList.size();
 			System.out.print("[ " );
 			for(int j = 0; j < BusbarList.size(); j = j + 2) {
-					System.out.print(y[i][j] + " ");
+					System.out.print(y[i][j].StringRep() + " ");
 			}
 			System.out.println("]");
 			
