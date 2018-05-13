@@ -9,7 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-import Project1Pack.Complex;
+
 
 import java.io.*;
 import java.sql.Connection;
@@ -94,7 +94,7 @@ public class Amain {
 		ArrayList LinearShuntCompensatorbgList = new ArrayList<String>();
 		
 		DBSQL mySQL = new DBSQL("root", "1008615szy");
-		mySQL.StartUp(); // starting up the connection with SQL server and create the desired database
+		mySQL.Initiate(); 
 		mySQL.createTables(); 
 		
 		// Base Voltage information
@@ -108,7 +108,7 @@ public class Amain {
 			for(int i = 0; i < BaseVoltageList.size(); i = i + 2) {
 				String BaseVrdfID = (String) BaseVoltageList.get(i);
 				double BaseNom = (double) BaseVoltageList.get(i + 1);
-				mySQL.BaseVoltageTab(BaseVrdfID, BaseNom);
+				mySQL.BaseVoltDB(BaseVrdfID, BaseNom);
 				//System.out.println("rdfID: " + BaseVrdfID +"\n"+ "Nominal Value: " + BaseNom);
 			}
 		
@@ -124,7 +124,7 @@ public class Amain {
 					String subrdfID = (String) SubstationList.get(i);
 					String subName = (String) SubstationList.get(i+1);
 					String subRegionrdfID = (String) SubstationList.get(i+2);
-					mySQL.SubstationTab(subrdfID, subName, subRegionrdfID);
+					mySQL.SubstationDB(subrdfID, subName, subRegionrdfID);
 					System.out.println("rdfID: " + subrdfID +"\n"+ "Name: " + subName +"\n"+
 					"region_ID: " + subRegionrdfID);
 					}
@@ -142,7 +142,7 @@ public class Amain {
 				String VoltName = (String) VoltLevelList.get(i+1);
 				String subrdfID = (String) VoltLevelList.get(i+2);
 				String baseVoltrdfID = (String) VoltLevelList.get(i+3);
-		     	mySQL.VoltageLevelTab(VoltrdfID, VoltName, subrdfID, baseVoltrdfID);
+		     	mySQL.VoltLevelDB(VoltrdfID, VoltName, subrdfID, baseVoltrdfID);
 				System.out.println("rdfID: " + VoltrdfID +"\n"+ "Name: " + VoltName +"\n"+ "substation_ID: "
 				+ subrdfID +"\n"+ "BaseVoltage_ID: " + baseVoltrdfID);
 				}
@@ -161,7 +161,7 @@ public class Amain {
 				double GenMaxP = (double) GeneratingList.get(i+2);
 				double GenMinP = (double) GeneratingList.get(i+3);
 				String GenEqConID = (String) GeneratingList.get(i+4);
-				mySQL.GeneratingUnitTab(GenrdfID, GenName, GenMaxP, GenMinP, GenEqConID);
+				mySQL.GeneratingDB(GenrdfID, GenName, GenMaxP, GenMinP, GenEqConID);
 				System.out.println("rdfID: " + GenrdfID +"\n"+ "Name: " + GenName +"\n"+
 				"Maximum Operating Power: " + GenMaxP +"\n"+ "Minimum Operating Power: " + GenMinP +"\n"
 		    	+ "Equipment Container ID: " + GenEqConID);
@@ -185,7 +185,7 @@ public class Amain {
 				String SyncRegCtrID = (String) SynchronousList.get(i+6);
 				String SyncEqConID = (String) SynchronousList.get(i+7);
 				String SyncbasevoltID = (String) SynchronousList.get(i+8);
-				mySQL.SynchMachineTab(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID, SyncbasevoltID);
+				mySQL.SynMachDB(SyncrdfID, SyncName, SyncRatedS, SyncP, SyncQ, SyncGenUnitID, SyncRegCtrID, SyncEqConID, SyncbasevoltID);
 				System.out.println("rdfID: " + SyncrdfID +"\n"+ "Name: " + SyncName +"\n"+
 						"rated S: " + SyncRatedS +"\n"+ "Active Power: " + SyncP +"\n"+ "Reactive Power: " + SyncQ
 						+"\n"+ "Generating Unit ID: " + SyncGenUnitID +"\n"+ "Regulating Control ID: " + SyncRegCtrID
@@ -205,7 +205,7 @@ public class Amain {
 							String RegrdfID = (String) RegulatingList.get(i);
 							String RegName = (String) RegulatingList.get(i+1);
 							double TargetValue = (double) RegulatingList.get(i+2);
-							mySQL.RegControlTab(RegrdfID, RegName, TargetValue);
+							mySQL.RegDB(RegrdfID, RegName, TargetValue);
 							System.out.println("rdfID: " + RegrdfID +"\n"+ "Name: " + RegName +"\n"+
 							"Target Value: " +TargetValue);
 							}
@@ -222,7 +222,7 @@ public class Amain {
 				String TransrdfID = (String) PowerTransList.get(i);
 				String TransName = (String) PowerTransList.get(i+1);
 				String TransEqConID = (String) PowerTransList.get(i+2);
-				mySQL.PowerTransformerTab(TransrdfID, TransName, TransEqConID);
+				mySQL.PowerTransDB(TransrdfID, TransName, TransEqConID);
 				System.out.println("rdfID: " + TransrdfID +"\n"+ "Name: " + TransName +"\n"+
 				"Equipment Container ID: " +TransEqConID);
 				}
@@ -242,7 +242,7 @@ public class Amain {
 				double LoadQ = (double) EnergyList.get(i+3);
 				String LoadEqConID = (String) EnergyList.get(i+4);
 				String BasevoltID = (String) EnergyList.get(i+5);
-				mySQL.EnergyConsumerTab(LoadrdfID, LoadName, LoadP, LoadQ, LoadEqConID, BasevoltID);
+				mySQL.EnergyDB(LoadrdfID, LoadName, LoadP, LoadQ, LoadEqConID, BasevoltID);
 				System.out.println("rdfID: " + LoadrdfID +"\n"+ "Name: " + LoadName +"\n"+
 				"Active Power: " +LoadP +"\n"+ "Reactive Power: " + LoadQ +"\n"+
 				"Equipment Container ID: " +LoadEqConID);
@@ -312,7 +312,7 @@ public class Amain {
 				double TrWindXvalue = (double) PowerTransEndList.get(i+3);
 				String PowTransrdfID = (String) PowerTransEndList.get(i+4);
 				String baseVoltrdfID = (String) PowerTransEndList.get(i+5);
-				mySQL.TransformerWindingTab(TrWindrdfID, TrWindName, TrWindRvalue, TrWindXvalue, PowTransrdfID, baseVoltrdfID);
+				mySQL.PowerTransEndDB(TrWindrdfID, TrWindName, TrWindRvalue, TrWindXvalue, PowTransrdfID, baseVoltrdfID);
 				System.out.println("rdfID: " + TrWindrdfID +"\n"+ "Name: " + TrWindName +"\n"+ "Resistance Value: "
 				+ TrWindRvalue +"\n"+ "Reactance Value: " + TrWindXvalue +"\n"
 				+ "Transformer_ID: " + PowTransrdfID +"\n"+ "BaseVoltage_ID: " + baseVoltrdfID);
@@ -334,7 +334,7 @@ public class Amain {
 				boolean BRState = (boolean) BreakerList.get(i+2);
 				String BREqConID = (String) BreakerList.get (i+3);
 				String BaseVoltage_rdfID = (String) BreakerList.get (i+4);
-				mySQL.BreakerTab(BRrdfID, BRName, BRState, BREqConID, BaseVoltage_rdfID);
+				mySQL.BreakerDB(BRrdfID, BRName, BRState, BREqConID, BaseVoltage_rdfID);
 				System.out.println("rdfID: " + BRrdfID +"\n"+ "Name: " + BRName +"\n"+
 				"State: " +BRState +"\n"+ "Equipment Container ID: " +BREqConID +"\n"+ "BaseVoltage RDF: " + BaseVoltage_rdfID);
 				}
@@ -351,7 +351,7 @@ public class Amain {
 				String TaprdfID = (String) TapList.get(i);
 				String TapName = (String) TapList.get(i+1);
 				double TapStep = (double) TapList.get(i+2);
-				mySQL.TapChangerTab(TaprdfID, TapName, TapStep);
+				mySQL.VoltLevelDB(TaprdfID, TapName, TapStep);
 				System.out.println("rdfID: " + TaprdfID +"\n"+ "Name: " + TapName +"\n"+
 				"Target Value: " +TapStep);
 				}
