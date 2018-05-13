@@ -631,8 +631,17 @@ public class Amain {
 			
 			// calculate numbers for ac lines
 			for(int i = 0; i < aclinebus.size(); i = i + 2) {
-				double a = (double) aclinebus.get(i);
-				double a = (double) aclinebus.get(i + 1);
+				int c = (int) aclinebus.get(i);
+				int d = (int) aclinebus.get(i + 1);
+				double l = (double) ACLinerxbglList.get(i + 4);
+				double r = (double) ACLinerxbglList.get(i);
+				double x = (double) ACLinerxbglList.get(i + 1);
+				double g = (double) ACLinerxbglList.get(i + 3);
+				double b = (double) ACLinerxbglList.get(i + 2);
+				
+				Complex Z = new Complex(l*r, l*x);
+				Complex Y = Z.reciprocal();
+				
 			}
 			
 			
