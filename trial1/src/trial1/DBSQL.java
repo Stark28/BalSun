@@ -96,7 +96,7 @@ public class DBSQL {
 			sql = "CREATE TABLE IF NOT EXISTS SynchronousMachine"
 					+ "(rdfID VARCHAR(40) NOT NULL, Name VARCHAR(40), RatedS DOUBLE, P DOUBLE, Q DOUBLE,"
 					+ "GenUnit_rdfID VARCHAR(40), RegControl_rdfID VARCHAR(40),"
-					+ "EquipmentContainer_rdfID VARCHAR(40), PRIMARY KEY (rdfID),"
+					+ "EquipmentContainer_rdfID VARCHAR(40),  BaseVoltage_rdfID VARCHAR(40), PRIMARY KEY (rdfID),"
 					+ "FOREIGN KEY (GenUnit_rdfID) REFERENCES GeneratingUnit(rdfID),"
 					+ "FOREIGN KEY (EquipmentContainer_rdfID) REFERENCES VoltageLevel(rdfID))";
 			stmt.executeUpdate(sql) ; // execute query
@@ -120,7 +120,7 @@ public class DBSQL {
 			// Create Energy Consumer table with corresponding attributes
 			sql = "CREATE TABLE IF NOT EXISTS EnergyConsumer"
 					+ "(rdfID VARCHAR(40) NOT NULL, Name VARCHAR(40), P DOUBLE, Q DOUBLE,"
-					+ "EquipmentContainer_rdfID VARCHAR(40), PRIMARY KEY (rdfID),"
+					+ "EquipmentContainer_rdfID VARCHAR(40),  BaseVoltage_rdfID VARCHAR(40), PRIMARY KEY (rdfID),"
 					+ "FOREIGN KEY (EquipmentContainer_rdfID) REFERENCES VoltageLevel(rdfID))";
 			stmt.executeUpdate(sql) ; // execute query
 			System.out.println("Created EnergyConsumer table in MicroGrid database successfully...");
@@ -137,7 +137,7 @@ public class DBSQL {
 			// Create Breaker table with corresponding attributes
 						sql = "CREATE TABLE IF NOT EXISTS Breaker"
 								+ "(rdfID VARCHAR(40) NOT NULL, Name VARCHAR(40), State BOOLEAN,"
-								+ "EquipmentContainer_rdfID VARCHAR(40), BaseVoltage_rdfID VARCHAR(40)  PRIMARY KEY (rdfID))";
+								+ "EquipmentContainer_rdfID VARCHAR(40), BaseVoltage_rdfID VARCHAR(40),  PRIMARY KEY (rdfID))";
 								
 
 						stmt.executeUpdate(sql) ; // execute query
@@ -250,11 +250,7 @@ public class DBSQL {
 			preparedStmt.setString(6,GenUnit_rdfID);
 			preparedStmt.setString(7,RegControl_rdfID);
 			preparedStmt.setString(8,EquipmentContainer_rdfID);
-
 			preparedStmt.setString(9,Basevoltage_rdfID);
-
-
-		
 
 			preparedStmt.executeUpdate();
 		   }
