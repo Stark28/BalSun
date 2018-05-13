@@ -65,6 +65,8 @@ public class Amain {
 
 		ArrayList PowerTransEndList = new ArrayList<String>();
 		
+		ArrayList PowerTransEndrxbgList = new ArrayList<String>();
+		
 		ArrayList BreakerList = new ArrayList<String>();
 		
 		ArrayList TapList = new ArrayList<String>();
@@ -249,6 +251,37 @@ public class Amain {
 			powerend.powerendfn(doc1, PowerTransEndList);
 			System.out.println("List of Power Transformer End : " + PowerTransEndList);
 			
+			PowertransEndrxbgClass powerendrxbg = new PowertransEndrxbgClass();
+			powerendrxbg.powerendrxbgfn(doc1, PowerTransEndrxbgList);
+			System.out.println("List of Power Transformer End rxbg: " + PowerTransEndrxbgList);
+			
+			double [][] transrxbg;
+			transrxbg = new double[ PowerTransEndrxbgList.size() / 4][5] ;
+			for(int i = 0; i < PowerTransEndrxbgList.size(); i = i + 4) {
+				transrxbg[i / 4][0] = i / 4;
+				transrxbg[i / 4][1] = (double) PowerTransEndrxbgList.get(i);
+				transrxbg[i / 4][2] = (double) PowerTransEndrxbgList.get(i + 1);
+				transrxbg[i / 4][3] = (double) PowerTransEndrxbgList.get(i + 2);
+				transrxbg[i / 4][4] = (double) PowerTransEndrxbgList.get(i + 3);
+			}
+			
+			for(int i = 0; i < PowerTransEndrxbgList.size() / 4; i++) {
+				System.out.println("No. " + transrxbg[i][0] + " r " + transrxbg[i][1] + " x " + transrxbg[i][2] + " b " + transrxbg[i][3] + " g " + transrxbg[i][4]);
+			}
+			
+			
+			System.out.println("Test");
+			for(int i = 0; i < PowerTransEndrxbgList.size() / 4; i ++) {
+				if(transrxbg[i][0] == 0) {
+					System.out.println("No. " + transrxbg[i][0] + " r " + transrxbg[i][1] + " x " + transrxbg[i][2] + " b " + transrxbg[i][3] + " g " + transrxbg[i][4]);
+				}
+				if(transrxbg[i][0] == 2) {
+					System.out.println("No. " + transrxbg[i][0] + " r " + transrxbg[i][1] + " x " + transrxbg[i][2] + " b " + transrxbg[i][3] + " g " + transrxbg[i][4]);
+				}
+			}
+
+			
+			
 			// Store the value to SQL database
 			
 			System.out.println("*** Power Transformer End (Winding) ***");
@@ -280,10 +313,10 @@ public class Amain {
 				String BRName = (String) BreakerList.get(i+1);
 				boolean BRState = (boolean) BreakerList.get(i+2);
 				String BREqConID = (String) BreakerList.get (i+3);
-				String BREbaserdfID = (String) BreakerList.get (i+4);
-				mySQL.BreakerTab(BRrdfID, BRName, BRState, BREqConID, BREbaserdfID);
+				String BaseVoltage_rdfID = (String) BreakerList.get (i+4);
+				mySQL.BreakerTab(BRrdfID, BRName, BRState, BREqConID, BaseVoltage_rdfID);
 				System.out.println("rdfID: " + BRrdfID +"\n"+ "Name: " + BRName +"\n"+
-				"State: " +BRState +"\n"+ "Equipment Container ID: " +BREqConID);
+				"State: " +BRState +"\n"+ "Equipment Container ID: " +BREqConID +"\n"+ "BaseVoltage RDF: " + BaseVoltage_rdfID);
 				}
 			
 		// Tap Changer information
@@ -614,6 +647,12 @@ public class Amain {
 				}
 			}
 	
+			// check the transformer end and transformer
+			for(int i = 0; i < PowerTransList.size() / 3; i ++) {
+				//if() {
+					
+				//}
+			}
 			
 			// For Shunt capacitor
 			System.out.println("Shunt");
@@ -652,10 +691,12 @@ public class Amain {
 					}
 				}
 			}
+			
 	   System.out.println("list of ac line buses numbers " + aclinebus);
 	   System.out.println("list of transformer buses numbers " + transformerbus);
 	   System.out.println("list of shunt buses numbers " + shuntbus);
 			
+	   
 			
 		/*	//System.out.println(a1);
 			System.out.println("a1 matrix");

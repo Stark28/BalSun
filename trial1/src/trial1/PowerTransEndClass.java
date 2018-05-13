@@ -41,6 +41,7 @@ public static ArrayList powerendfn(Document doc1, ArrayList PowerTransEndList)
     System.out.println("Transformer.x : " + trans_x);
     System.out.println("Transformer rdfID : " + transrdfID);
     System.out.println("Basevoltge rdfID : " + basevoltrdfID);
+
     
     PowerTransEndList.add(rdfID);
     PowerTransEndList.add(name);
@@ -48,6 +49,7 @@ public static ArrayList powerendfn(Document doc1, ArrayList PowerTransEndList)
     PowerTransEndList.add(trans_x);
     PowerTransEndList.add(transrdfID);
     PowerTransEndList.add(basevoltrdfID);
+
     
     
 }
