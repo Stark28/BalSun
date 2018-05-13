@@ -270,6 +270,8 @@ public class Amain {
 			}
 			
 			
+			
+			/*
 			System.out.println("Test");
 			for(int i = 0; i < PowerTransEndrxbgList.size() / 4; i ++) {
 				if(transrxbg[i][0] == 0) {
@@ -279,7 +281,7 @@ public class Amain {
 					System.out.println("No. " + transrxbg[i][0] + " r " + transrxbg[i][1] + " x " + transrxbg[i][2] + " b " + transrxbg[i][3] + " g " + transrxbg[i][4]);
 				}
 			}
-
+            */
 			
 			
 			// Store the value to SQL database
