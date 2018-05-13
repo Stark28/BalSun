@@ -438,11 +438,11 @@ public class Amain {
 			
 		//  initial the Y bus matrix
 			Complex zero = new Complex(0,0);
-			Complex [][] y;
-			y = new Complex [BusbarList.size()][BusbarList.size()];
+			Complex [][] ybus;
+			ybus = new Complex [BusbarList.size()][BusbarList.size()];
 			for(int i = 0; i < BusbarList.size(); i = i + 2) {
 				for(int j = 0; j < BusbarList.size(); j = j + 2) {
-				y[i][j]= zero ;
+				ybus[i][j]= zero ;
 			}
 			}
 			
@@ -592,6 +592,8 @@ public class Amain {
 			}
 			*/
            
+           double Sbase = 300; // define the base power
+           
            // For AC line
 			System.out.println("AC line");
 			//double[] aclinebus = new double[ACLinebaseList.size() * 2];
@@ -641,6 +643,23 @@ public class Amain {
 				
 				Complex Z = new Complex(l*r, l*x);
 				Complex Y = Z.reciprocal();
+				
+				Complex Y1 =new Complex(l*g/2 , l*b/2);
+				
+				
+				
+				for(int j = 0; j < BaseVoltageList.size(); j = j + 2) {
+					for(int k = 0; k < ACLinebaseList.size(); k++) {
+						if(BaseVoltageList.get(j).equals(ACLinebaseList.get(k))) {
+							double v = (double) BaseVoltageList.get(j + 1);
+							Complex Ypu = Y.multi((Math.pow(v, 2)/Sbase));
+							Complex Y1pu = Y1.multi((Math.pow(v, 2)/Sbase));
+							
+						}
+					}
+				}
+				
+				
 				
 			}
 			
@@ -758,7 +777,7 @@ public class Amain {
 			int a = BusbarList.size();
 			System.out.print("[ " );
 			for(int j = 0; j < BusbarList.size(); j = j + 2) {
-					System.out.print(y[i][j].StringRep() + " ");
+					System.out.print(ybus[i][j].StringRep() + " ");
 			}
 			System.out.println("]");
 			
