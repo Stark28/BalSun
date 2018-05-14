@@ -453,27 +453,7 @@ public class Amain {
 				
 			}
  	
-			
-		//  initial the Y bus matrix
-			Complex zero = new Complex(0,0);
-			Complex [][] ybus = new Complex [BusbarList.size()/2][BusbarList.size()/2];
-			for(int i = 0; i < BusbarList.size()/2; i++) {
-				for(int j = 0; j < BusbarList.size()/2; j++) {
-				ybus[i][j]= zero;
-			}
-			}
-			
-			
-			// print Y bus matrix
-			for(int i = 0; i < BusbarList.size()/2; i++ ) {
-			int a = BusbarList.size();
-			System.out.print("[ " );
-			for(int j = 0; j < BusbarList.size()/2; j++) {
-					System.out.print(ybus[i][j]+ " ");
-			}
-			System.out.println("]");
-			
-	      }
+		
 		
 		
 			
@@ -599,28 +579,17 @@ public class Amain {
         	   }
            }
 			
-			
-
-			
-			
-			/*// start from the generating unit(synchronous machine)
-			for (int i = 0; i < TerminalconductingList.size(); i ++) {
-				if( t1[i][2] == 2) {
-					int a = t1[i][0]; // the terminal number connected to the generating unit
-					a1[a][2] = 1;// the flag of the terminal in the a1 matrix turns from 0 to 1
-					
-					for(int j = 0; j < TerminalconductingList.size(); j++){
-						if(a1[j][1] == a1[a][1] && a != j) {// check are there any other terminals that share the same connectivity node with the previous terminal
-							if(t1[j][2] == 6) { //check whether the terminals here connected to the busbar
-								int b = t1[j][1]; // the first busbar number that will be used in the ybus matrix
-								a1[j][2] = 1; // the flag of this terminal turns to 1
-							 	
-							}
-						}
-					}
-				}
-			}
-			*/
+	         
+       	
+   		//  initial the Y bus matrix
+   			Complex zero = new Complex(0,0);
+   			Complex [][] ybus = new Complex [BusbarList.size()/2][BusbarList.size()/2];
+   			for(int i = 0; i < BusbarList.size()/2; i++) {
+   				for(int j = 0; j < BusbarList.size()/2; j++) {
+   				ybus[i][j]= zero;
+   			}
+   			}
+   			
            
            double Sbase = 300; // define the base power
            
@@ -863,13 +832,7 @@ public class Amain {
 
 										}
 									}
-										
 					}
-
-	
-							
-						
-						
 				}
 	
 			}
@@ -886,16 +849,7 @@ public class Amain {
 			System.out.println("No. " + transrxbgnew[i][0] + " r " + transrxbgnew[i][1] + " x " + transrxbgnew[i][2] + " b " + transrxbgnew[i][3] + " g " + transrxbgnew[i][4] + " v " + transrxbgnew[i][5]);
 		}
 	   
-			
-		/*	//System.out.println(a1);
-			System.out.println("a1 matrix");
-			for(int i = 0; i < TerminalconnectList.size(); i++) {
-				System.out.print("Terminal " + a1[i][0] + " ");
-				System.out.print("ConnectivityNode " + a1[i][1] + " ");
-				System.out.println("flag of terminal " + a1[i][2]);
-			}
-			*/
-		
+				
 			// print the matrix of t1
 			System.out.println("Matrix t1(terminal to equipment) ");
 			System.out.println("generating unit-1; synchronous machine-2; AC line-3; power transformer-4; energy consumer-5; busbar-6; shunt cpmpensator-7; breaker-8");
@@ -914,7 +868,7 @@ public class Amain {
 			int a = BusbarList.size();
 			System.out.print("[ " );
 			for(int j = 0; j < BusbarList.size()/2; j++) {
-					System.out.print(ybus[i][j].StringRep() + " ");
+					System.out.print(ybus[i][j].StringRep() + "        ");
 			}
 			System.out.println("]");
 			
