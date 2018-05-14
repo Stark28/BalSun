@@ -93,6 +93,8 @@ public class Amain {
 		
 		ArrayList LinearShuntCompensatorbgList = new ArrayList<String>();
 		
+		ArrayList LinearShuntCompensatorvList = new ArrayList<String>();
+		
 		DBSQL mySQL = new DBSQL("root", "1008615szy");
 		mySQL.Initiate(); 
 		mySQL.createTables(); 
@@ -258,13 +260,21 @@ public class Amain {
 			System.out.println("List of Power Transformer End rxbg: " + PowerTransEndrxbgList);
 			
 			double [][] transrxbg;
-			transrxbg = new double[ PowerTransEndrxbgList.size() / 4][5];
+			transrxbg = new double[ PowerTransEndrxbgList.size() / 4][6];
 			for(int i = 0; i < PowerTransEndrxbgList.size(); i = i + 4) {
 				transrxbg[i / 4][0] = i / 4;
 				transrxbg[i / 4][1] = (double) PowerTransEndrxbgList.get(i);
 				transrxbg[i / 4][2] = (double) PowerTransEndrxbgList.get(i + 1);
 				transrxbg[i / 4][3] = (double) PowerTransEndrxbgList.get(i + 2);
 				transrxbg[i / 4][4] = (double) PowerTransEndrxbgList.get(i + 3);
+				for(int j = 0; j < PowerTransEndList.size(); j = j + 6) {
+					for(int k = 0; k < BaseVoltageList.size(); k = k + 2 ) {
+						if(i / 4 == j / 6 && PowerTransEndList.get(j + 5).equals(BaseVoltageList.get(k))) {
+							transrxbg[i / 4][5] = (double) BaseVoltageList.get(k + 1);
+						}
+					}
+					
+				}
 			}
 			
 			for(int i = 0; i < PowerTransEndrxbgList.size() / 4; i++) {
@@ -272,7 +282,7 @@ public class Amain {
 			}
 			
 			double [][] transrxbgnew;
-			transrxbgnew = new double[ PowerTransList.size() / 3][5];
+			transrxbgnew = new double[ PowerTransList.size() / 3][6];
 			for(int i = 0; i < PowerTransList.size(); i = i + 3 ) {
 				for(int j = 0; j < PowerTransEndList.size(); j = j + 6) {
 					if(PowerTransList.get(i).equals(PowerTransEndList.get(j + 4))) {
@@ -282,6 +292,7 @@ public class Amain {
 							transrxbgnew[i / 3][2] = transrxbg[j / 6][2];
 							transrxbgnew[i / 3][3] = transrxbg[j / 6][3];
 							transrxbgnew[i / 3][4] = transrxbg[j / 6][4];
+							transrxbgnew[i / 3][5] = transrxbg[j / 6][5];
 						}
 					}
 				}
@@ -399,6 +410,13 @@ public class Amain {
 			shunt.shuntfn(doc1, LinearShuntCompensatorrdfIDList);
 			System.out.println("List of capacitor : " + LinearShuntCompensatorrdfIDList);	
 
+			LinearShuntCompensatorbgClass shunt1 = new LinearShuntCompensatorbgClass();
+			shunt1.shunt1fn(doc1, LinearShuntCompensatorbgList);
+			System.out.println("List of capacitor bg : " + LinearShuntCompensatorbgList);	
+			
+			LinearShuntCompensatorvClass shunt2 = new LinearShuntCompensatorvClass();
+			shunt2.shunt2fn(doc1, LinearShuntCompensatorvList);
+			System.out.println("List of capacitor volt : " + LinearShuntCompensatorvList);	
 			
 		//	Find the connectivity node and terminal pairs that matches
 			int [][] a1;
@@ -438,21 +456,20 @@ public class Amain {
 			
 		//  initial the Y bus matrix
 			Complex zero = new Complex(0,0);
-			Complex [][] ybus;
-			ybus = new Complex [BusbarList.size()][BusbarList.size()];
-			for(int i = 0; i < BusbarList.size(); i = i + 2) {
-				for(int j = 0; j < BusbarList.size(); j = j + 2) {
+			Complex [][] ybus = new Complex [BusbarList.size()/2][BusbarList.size()/2];
+			for(int i = 0; i < BusbarList.size()/2; i++) {
+				for(int j = 0; j < BusbarList.size()/2; j++) {
 				ybus[i][j]= zero;
 			}
 			}
 			
 			
 			// print Y bus matrix
-			for(int i = 0; i < BusbarList.size(); i = i + 2 ) {
+			for(int i = 0; i < BusbarList.size()/2; i++ ) {
 			int a = BusbarList.size();
 			System.out.print("[ " );
-			for(int j = 0; j < BusbarList.size(); j = j + 2) {
-					System.out.print(ybus[i][j].StringRep() + " ");
+			for(int j = 0; j < BusbarList.size()/2; j++) {
+					System.out.print(ybus[i][j]+ " ");
 			}
 			System.out.println("]");
 			
@@ -652,46 +669,52 @@ public class Amain {
 				int c = (int) aclinebus.get(i);
 				int d = (int) aclinebus.get(i + 1);
 				
-				double l = (double) ACLinerxbglList.get(i + 4);
-				double r = (double) ACLinerxbglList.get(i);
-				double x = (double) ACLinerxbglList.get(i + 1);
-				double g = (double) ACLinerxbglList.get(i + 3);
-				double b = (double) ACLinerxbglList.get(i + 2);
-				
-				Complex Z = new Complex(l*r, l*x);
-				Complex Y = Z.reciprocal();
-				
-				Complex Ysh =new Complex(l*g/2 , l*b/2);	
+				// get the value of the rxgbl of the acline
+
+				for(int p = 0; p < ACLinerxbglList.size(); p = p + 5) {
+					if((i / 2) == (p / 5)) {
+						double l = (double) ACLinerxbglList.get(p + 4);
+						double r = (double) ACLinerxbglList.get(p);
+						double x = (double) ACLinerxbglList.get(p + 1);
+						double g = (double) ACLinerxbglList.get(p + 3);
+						double b = (double) ACLinerxbglList.get(p + 2);
 						
-				for(int j = 0; j < BaseVoltageList.size(); j = j + 2) {
-					for(int k = 0; k < ACLinebaseList.size(); k++) {
-						if(BaseVoltageList.get(j).equals(ACLinebaseList.get(k))) {
-							double v = (double) BaseVoltageList.get(j + 1);
-							Complex Ypu = Y.multi((v * v)/Sbase);
-							Complex Yshpu = Ysh.multi((v * v)/Sbase);
-							
-							for(int m = 0; m < BusbarList.size() / 2; m ++) {
-								if(m == c) {
-									Complex Ytotalpu = Ypu.plus(Yshpu);
-									ybus[m][m] = Ytotalpu.plus(ybus[m][m]);
-									for(int n = 0; n < BusbarList.size() / 2; n ++) {
-										if(n == d) {
-											//Complex Ytotal2pu = Ypu.plus(Yshpu);
-											System.out.println(n);
-											System.out.println(d);
-											//ybus[d][d] = Ytotalpu.plus(ybus[d][d]);
-											Complex minus = new Complex(-1.0, 0.0);
-											Complex minusY = Ypu.times(minus);
-											//ybus[m][n]=minusY.plus(ybus[m][n]);
-											//ybus[n][m]=minusY.plus(ybus[n][m]);
+						Complex Z = new Complex(l*r, l*x);
+						Complex Y = Z.reciprocal();
+						
+						Complex Ysh =new Complex(l*g/2 , l*b/2);	
+							for(int k = 0; k < BaseVoltageList.size(); k = k + 2) {
+								if(BaseVoltageList.get(k).equals(ACLinebaseList.get(p/5))) {
+									double v = (double) BaseVoltageList.get(k + 1);
+									Complex Ypu = Y.multi((v*v)/Sbase);
+									Complex Yshpu = Ysh.multi((v*v)/Sbase);
+									
+									for(int m = 0; m < BusbarList.size() / 2; m ++) {
+										if(m == c) {
+											Complex Ytotalpu = Ypu.plus(Yshpu);
+											ybus[m][m] = Ytotalpu.plus(ybus[m][m]);
+											for(int n = 0; n < BusbarList.size() / 2; n ++) {
+												if(n == d) {
+													Complex Ytotal2pu = Ypu.plus(Yshpu);
+													//System.out.println(n);
+													//System.out.println(d);
+													ybus[n][n] = Ytotal2pu.plus(ybus[n][n]);
+													Complex minus = new Complex(-1.0, 0.0);
+													Complex minusY = Ypu.times(minus);
+													ybus[m][n]=minusY.plus(ybus[m][n]);
+													ybus[n][m]=minusY.plus(ybus[n][m]);
+												}
+											}
 										}
 									}
+											
 								}
 							}
-									
-						}
+						
 					}
-				}		
+	
+				}
+	
 			}
 			
 			
@@ -730,8 +753,55 @@ public class Amain {
 					}
 				}
 			}
-	
-
+	       
+			// calculate numbers for transformers
+			
+						for(int i = 0; i < transformerbus.size(); i = i + 2) {
+							
+							int c = (int) transformerbus.get(i);
+							int d = (int) transformerbus.get(i + 1);
+							
+							// get the value of the rxgbl of the acline  PowerTransList
+							for(int p = 0; p < PowerTransList.size() / 3; p++) {
+								if((i / 2) == p) {
+									double r = transrxbgnew[p][1];
+									double x = transrxbgnew[p][2];
+									double g = transrxbgnew[p][4];
+									double b = transrxbgnew[p][3];
+									double v = transrxbgnew[p][5];
+									
+									Complex Z = new Complex(r, x);
+									Complex Y = Z.reciprocal();
+									
+									Complex Ysh =new Complex(g/2 , b/2);			
+												
+									Complex Ypu = Y.multi((Math.pow(v, 2)/Sbase));
+									Complex Yshpu = Ysh.multi((Math.pow(v, 2)/Sbase));
+												
+									for(int m = 0; m < BusbarList.size() / 2; m ++) {
+										if(m == c) {
+											Complex Ytotalpu = Ypu.plus(Yshpu);
+											ybus[m][m] = Ytotalpu.plus(ybus[m][m]);
+											for(int n = 0; n < BusbarList.size() / 2; n ++) {
+												if(n == d) {
+													Complex Ytotal2pu = Ypu.plus(Yshpu);
+													//System.out.println(n);
+													//System.out.println(d);
+													ybus[n][n] = Ytotal2pu.plus(ybus[n][n]);
+													Complex minus = new Complex(-1.0, 0.0);
+													Complex minusY = Ypu.times(minus);
+													ybus[m][n]=minusY.plus(ybus[m][n]);
+													ybus[n][m]=minusY.plus(ybus[n][m]);
+												}
+											}
+										}
+									}
+								}
+		
+							}
+				
+						}
+						
 			
 			// For Shunt capacitor
 			System.out.println("Shunt");
@@ -771,13 +841,49 @@ public class Amain {
 				}
 			}
 			
+			
+			// calculate numbers for shunt 
+			
+            for(int i = 0; i < shuntbus.size(); i++) {
+            	
+				// get the value of the rxgbl of the acline
+				for(int p = 0; p < LinearShuntCompensatorbgList.size(); p = p + 2) {
+					if(i == (p / 2)) {
+						double g = (double) LinearShuntCompensatorbgList.get(p + 1);
+						double b = (double) LinearShuntCompensatorbgList.get(p);
+						double v = (double) LinearShuntCompensatorvList.get(i);
+						
+						Complex Ysh =new Complex(g , b);	
+						
+									Complex Yshpu = Ysh.multi((v*v)/Sbase);
+									
+									for(int m = 0; m < BusbarList.size() / 2; m ++) {
+										if(m == i) {
+											ybus[m][m] = Yshpu.plus(ybus[m][m]);
+
+										}
+									}
+										
+					}
+
+	
+							
+						
+						
+				}
+	
+			}
+			
+			
+			
+			
 	   System.out.println("list of ac line buses numbers " + aclinebus);
 	   System.out.println("list of transformer buses numbers " + transformerbus);
 	   System.out.println("list of shunt buses numbers " + shuntbus);
 		
 		System.out.println("Trans RXBG new:");
 		for(int i = 0; i < PowerTransList.size() / 3; i++) {
-			System.out.println("No. " + transrxbgnew[i][0] + " r " + transrxbgnew[i][1] + " x " + transrxbgnew[i][2] + " b " + transrxbgnew[i][3] + " g " + transrxbgnew[i][4]);
+			System.out.println("No. " + transrxbgnew[i][0] + " r " + transrxbgnew[i][1] + " x " + transrxbgnew[i][2] + " b " + transrxbgnew[i][3] + " g " + transrxbgnew[i][4] + " v " + transrxbgnew[i][5]);
 		}
 	   
 			
@@ -804,10 +910,10 @@ public class Amain {
 			}
 			
 		// print Y bus matrix
-			for(int i = 0; i < BusbarList.size(); i = i + 2 ) {
+			for(int i = 0; i < BusbarList.size()/2; i++ ) {
 			int a = BusbarList.size();
 			System.out.print("[ " );
-			for(int j = 0; j < BusbarList.size(); j = j + 2) {
+			for(int j = 0; j < BusbarList.size()/2; j++) {
 					System.out.print(ybus[i][j].StringRep() + " ");
 			}
 			System.out.println("]");

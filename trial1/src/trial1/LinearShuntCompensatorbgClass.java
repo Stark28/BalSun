@@ -10,7 +10,7 @@ package trial1;
 
 	public class LinearShuntCompensatorbgClass{
 		
-	public static ArrayList ac3fn(Document doc1, ArrayList LinearShuntCompensatorbgList)
+	public static ArrayList shunt1fn(Document doc1, ArrayList LinearShuntCompensatorbgList)
 	{
 		NodeList shunt = doc1.getElementsByTagName("cim:LinearShuntCompensator");
 		System.out.println("***** shunt capacitor ***** ");
