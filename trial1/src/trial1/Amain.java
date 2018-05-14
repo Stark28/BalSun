@@ -1,5 +1,7 @@
 package trial1;
 
+
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -173,6 +175,7 @@ public class Amain {
 			SynMachClass syn = new SynMachClass();
 			syn.synfn(doc1, doc2, SynchronousList);
 			System.out.println("List of Synchronous Machine : " + SynchronousList);
+			
 			
 		// Store the value to SQL database
 			
@@ -871,17 +874,17 @@ public class Amain {
 					System.out.print(ybus[i][j].StringRep() + "        ");
 			}
 			System.out.println("]");
-			
 	      }
+			
+
 		}
 		
-	
-
 	catch(Exception e){
 		e.printStackTrace();
 		}
-	
+		
 	}
+	
 
 }
 
